@@ -34,6 +34,13 @@ h1 {
     font-family: 'noto-bold';
 }
 
+input {
+    outline: none; /* Remove default outline */
+    border: none; /* Remove any default border */
+    box-shadow: none; /* Remove any default box-shadow */
+    background: none; /* Remove any default background */
+}
+
 /*TOP BUTTONS*/
 
 .form-top-buttons {
@@ -110,7 +117,7 @@ h1 {
     box-shadow: 0 0 0 rgba(0, 0, 0, 0); /* Initial box-shadow */
 }
 
-.input-element:focus, .input-element:hover {
+.input-element:hover, .input-element:focus {
     border: 2px solid #007BFF; /* Optional: Change border color on focus/hover */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Define the box-shadow on focus/hover */
 }
