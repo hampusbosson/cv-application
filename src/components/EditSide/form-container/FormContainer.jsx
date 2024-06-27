@@ -19,21 +19,21 @@ function PersonalDetails() {
         <section className='personal-details-container'>
             <h1>Personal Details</h1>
             <ul className='personal-details-input'>
-                <li>
-                    <label>Full Name</label>
-                    <input type="text" placeholder=''/>
+                <li className='details-element'> 
+                    <label htmlFor='full-name'>Full Name</label>
+                    <input type="text" id='full-name' className='input-element' placeholder='First and last name'/>
                 </li>
-                <li>
-                    <label>Email</label>
-                    <input type="text" />
+                <li className='details-element'>
+                    <label htmlFor='email'>Email</label>
+                    <input type="email" id='email' className='input-element' placeholder='Enter email'/>
                 </li>
-                <li>
-                    <label>Phone Number</label>
-                    <input type="text" />
+                <li className='details-element'>
+                    <label htmlFor='phone-number'>Phone Number</label>
+                    <input type="tel" id='phone-number' className='input-element' placeholder='Enter phone number'/>
                 </li>
-                <li>
-                    <label>Address</label>
-                    <input type="text" />
+                <li className='details-element'>
+                    <label htmlFor='adress'>Address</label>
+                    <input type="text" id='adress' className='input-element' placeholder='City, Country'/>
                 </li>
             </ul>
         </section>
