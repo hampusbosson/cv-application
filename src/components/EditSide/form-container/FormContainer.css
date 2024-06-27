@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'noto-regular';
+    src: url('/src/assets/fonts/NotoSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'noto-bold';
+    src: url('/src/assets/fonts/NotoSans-Bold.ttf');
+}
+
+.form-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-top-buttons {
+    width: 100%;
+    height: 2rem;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.131); /* Box shadow pointing mostly downward */
+}
+
+#clear-btn, #example-btn {
+    font-family: 'noto-bold';
+    width: 50%; 
+    margin: 0; 
+    padding: 0; 
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+#clear-btn {
+    gap: 0.4rem;
+}
+
+#example-btn {
+    background-color: rgba(211, 211, 211, 0.681);
+    border-radius: 5px;
+}
+
+#clear-btn:hover, #example-btn:hover {
+    transform: scale(1.02);
+}
+
+.trashcan {
+    width: 20px;
+    fill: red;
+    margin-bottom: 3px;
+}
+
+
