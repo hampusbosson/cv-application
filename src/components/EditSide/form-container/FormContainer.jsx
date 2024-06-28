@@ -1,4 +1,5 @@
 import './FormContainer.css'
+import { useState } from 'react'
 
 function TopButtons() {
     return (
@@ -40,7 +41,8 @@ function PersonalDetails() {
     )
 }
 
-function EducationDetails() {
+function EducationDetails({ isExpanded, onToggle }) {
+
     return (
         <section className='education-details-container'>
             <div className='education-top'>
@@ -52,17 +54,27 @@ function EducationDetails() {
                     </svg>
                     <h2>Education</h2>
                 </div>
-                <button className='arrow-button'>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="arrow-icon">
+                <button className='arrow-button' onClick={onToggle}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`arrow-icon ${isExpanded ? 'expanded' : ''}`}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                     </svg>
                 </button>
             </div>
+            {isExpanded && (
+                <div className='education-list'>
+                    <button className='add-education-btn'>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="plus-icon">
+                            <path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z" />
+                        </svg>
+                        Education
+                    </button>
+                </div>
+            )}
         </section>
     )
 }
 
-function ExperienceDetails() {
+function ExperienceDetails( {isExpanded, onToggle }) {
     return (
         <section className='experience-details-container'>
             <div className='experience-top'>
@@ -73,23 +85,44 @@ function ExperienceDetails() {
                     </svg>
                     <h2>Experience</h2>
                 </div>
-                <button className='arrow-button'>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="arrow-icon">
+                <button className='arrow-button' onClick={onToggle}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`arrow-icon ${isExpanded ? 'expanded' : ''}`}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                     </svg>
                 </button>
             </div>
+            {isExpanded && (
+                <div className='experience-list'>
+                    <button className='add-education-btn'>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="plus-icon">
+                            <path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z" />
+                        </svg>
+                        Experience
+                    </button>
+                </div>
+            )}
         </section>
     )
 }
 
 function FormContainer() {
+    const [expandedSection, setExpandedSection] = useState(null);
+
+    function handleToggle(section) {
+        setExpandedSection(prevSection => (prevSection === section ? null : section));
+    }
     return (
         <div className='form-container'>
             <TopButtons />
             <PersonalDetails />
-            <EducationDetails />
-            <ExperienceDetails />
+            <EducationDetails 
+                isExpanded={expandedSection === 'education'}
+                onToggle={() => handleToggle('education')}
+            />
+            <ExperienceDetails 
+                isExpanded={expandedSection === 'experience'}
+                onToggle={() => handleToggle('experience')}
+            />
         </div>
     )
 }
