@@ -21,7 +21,7 @@
     gap: 2rem;
 }
 
-.form-top-buttons, .personal-details-container {
+.form-top-buttons, .personal-details-container, .education-details-container, .experience-details-container {
     background-color: white;
     width: 100%;
     border-radius: 10px;
@@ -122,4 +122,49 @@ input {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Define the box-shadow on focus/hover */
 }
 
+/* EDUCATION AND EXPERIENCE FORMS */
 
+.education-top, .experience-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.education-header, .experience-header {
+    display: flex;
+    flex-direction: row;
+    gap: 0.7rem;
+}
+
+.education-icon, .experience-icon {
+    width: 25px;
+}
+
+.arrow-button {
+    padding: 0;
+    width: 20px;
+    border: none; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+.arrow-button:hover {
+    cursor: pointer;
+}
+
+.arrow-icon {
+    transition: transform 0.25s;
+}
+
+.arrow-icon.expanded {
+    transform: rotate(180deg);
+}
+
+.experience-details {
+    margin-top: 16px;
+    /* Additional styles for the details content */
+}
