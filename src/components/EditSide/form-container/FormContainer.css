@@ -196,3 +196,11 @@ input {
 .plus-icon {
     width: 16px;
 }
+
+.add-experience-btn.hidden, .add-education-btn.hidden {
+    display: none;
+}
+
+.experience-form.hidden, .education-form.hidden {
+    display: none;
+}

@@ -41,7 +41,7 @@ function PersonalDetails() {
     )
 }
 
-function EducationDetails({ isExpanded, onToggle }) {
+function EducationDetails({ isExpanded, onToggle, isFormActive, showForm}) {
 
     return (
         <section className='education-details-container'>
@@ -62,19 +62,60 @@ function EducationDetails({ isExpanded, onToggle }) {
             </div>
             {isExpanded && (
                 <div className='education-list'>
-                    <button className='add-education-btn'>
+                    <button className={`add-education-btn ${isFormActive ? 'hidden' : ''}`} onClick={showForm}>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="plus-icon">
                             <path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z" />
                         </svg>
                         Education
                     </button>
+                    <form className={`education-form ${isFormActive ? '' : 'hidden'}`}>
+                        <div className='input-group'>
+                            <label htmlFor="school-name">
+                                <span className='label-text'>School</span>
+                            </label>
+                            <input type="text" id='school-name' placeholder='Enter School / University'/>
+                        </div>
+                        <div className='input-group'>
+                            <label htmlFor="degree">
+                                <span className='label-text'>Degree</span>
+                            </label>
+                            <input type="text" id='degree' placeholder='Enter Degree / Field Of Study'/>
+                        </div>
+                        <div className='dates-group'>
+                            <div className='input-group'>
+                                <label htmlFor="date">
+                                    <span className='label-text'>Start Date</span>
+                                </label>
+                                <input type="text" id='date' placeholder='Enter Start Date'/>
+                            </div>
+                            <div className='input-group'>
+                                <label htmlFor="date">
+                                    <span className='label-text'>End Date</span>
+                                </label>
+                                <input type="text" id='date' placeholder='Enter End Date'/>
+                            </div>
+                        </div>
+                        <div className='input-group'>
+                                <label htmlFor="location">
+                                    <span className='label-text'>Location</span>
+                                </label>
+                                <input type="text" id='location' placeholder='Enter Location'/>
+                        </div>
+                        <div className='buttons'>
+                            <button className='delete-btn' type='button'>Delete</button>
+                            <div className='main-buttons'>
+                                <button className='cancel-btn' type='button'>Cancel</button>
+                                <button className='save-btn' type='button'>Save</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             )}
         </section>
     )
 }
 
-function ExperienceDetails( {isExpanded, onToggle }) {
+function ExperienceDetails( {isExpanded, onToggle, isFormActive, showForm }) {
     return (
         <section className='experience-details-container'>
             <div className='experience-top'>
@@ -93,24 +134,39 @@ function ExperienceDetails( {isExpanded, onToggle }) {
             </div>
             {isExpanded && (
                 <div className='experience-list'>
-                    <button className='add-education-btn'>
+                    <button className={`add-experience-btn ${isFormActive ? 'hidden' : ''}`} onClick={showForm}>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="plus-icon">
                             <path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z" />
                         </svg>
                         Experience
                     </button>
+                    <div className={`experience-form ${isFormActive ? '' : 'hidden'}`}>
+                        <h1>hello world</h1>
+                    </div>
                 </div>
             )}
+
         </section>
     )
 }
 
 function FormContainer() {
     const [expandedSection, setExpandedSection] = useState(null);
+    const [EducationForm, setEducationForm] = useState(null);
+    const [ExperienceForm, setExperienceForm] = useState(null);
 
     function handleToggle(section) {
         setExpandedSection(prevSection => (prevSection === section ? null : section));
     }
+
+    function showEducationForm() {
+        setEducationForm(true);
+    }
+
+    function showExperienceForm() {
+        setExperienceForm(true);
+    }
+
     return (
         <div className='form-container'>
             <TopButtons />
@@ -118,10 +174,14 @@ function FormContainer() {
             <EducationDetails 
                 isExpanded={expandedSection === 'education'}
                 onToggle={() => handleToggle('education')}
+                isFormActive={EducationForm === true}
+                showForm={() => showEducationForm()}
             />
             <ExperienceDetails 
                 isExpanded={expandedSection === 'experience'}
                 onToggle={() => handleToggle('experience')}
+                isFormActive={ExperienceForm === true}
+                showForm={() => showExperienceForm()}
             />
         </div>
     )
