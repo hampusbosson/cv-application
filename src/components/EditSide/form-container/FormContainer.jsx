@@ -40,7 +40,11 @@ function PersonalDetails() {
     )
 }
 
-function EducationDetails({ isExpanded, onToggle, isFormActive, showForm, closeForm }) {
+function EducationDetails({ isExpanded, onToggle, isFormActive, showForm, closeForm, formData, setFormData }) {
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({ ...prevState, [name]: value }));
+    }
 
     return (
         <section className='education-details-container'>
@@ -66,33 +70,33 @@ function EducationDetails({ isExpanded, onToggle, isFormActive, showForm, closeF
                             <label htmlFor="school-name">
                                 <span className='label-text'>School</span>
                             </label>
-                            <input type="text" id='school-name' placeholder='Enter School / University'/>
+                            <input type="text" name='school' id='school-name' placeholder='Enter School / University' value={formData.school} onChange={handleInputChange}/>
                         </div>
                         <div className='input-group'>
                             <label htmlFor="degree">
                                 <span className='label-text'>Degree</span>
                             </label>
-                            <input type="text" id='degree' placeholder='Enter Degree / Field Of Study'/>
+                            <input type="text" name='degree' id='degree' placeholder='Enter Degree / Field Of Study' value={formData.degree} onChange={handleInputChange}/>
                         </div>
                         <div className='dates-group'>
                             <div className='input-group'>
                                 <label htmlFor="date">
                                     <span className='label-text'>Start Date</span>
                                 </label>
-                                <input type="text" id='date' placeholder='Enter Start Date'/>
+                                <input type="text" name='startDate' id='date' placeholder='Enter Start Date' value={formData.startDate} onChange={handleInputChange}/>
                             </div>
                             <div className='input-group'>
                                 <label htmlFor="date">
                                     <span className='label-text'>End Date</span>
                                 </label>
-                                <input type="text" id='date' placeholder='Enter End Date'/>
+                                <input type="text" name='endDate' id='date' placeholder='Enter End Date' value={formData.endDate} onChange={handleInputChange}/>
                             </div>
                         </div>
                         <div className='input-group'>
                                 <label htmlFor="location">
                                     <span className='label-text'>Location</span>
                                 </label>
-                                <input type="text" id='location' placeholder='Enter Location'/>
+                                <input type="text" name='location' id='location' placeholder='Enter Location' value={formData.location} onChange={handleInputChange}/>
                         </div>
                         <div className='form-buttons'>
                             <button className='delete-btn' type='button' onClick={closeForm}>
@@ -111,7 +115,12 @@ function EducationDetails({ isExpanded, onToggle, isFormActive, showForm, closeF
     )
 }
 
-function ExperienceDetails( {isExpanded, onToggle, isFormActive, showForm, closeForm }) {
+function ExperienceDetails( {isExpanded, onToggle, isFormActive, showForm, closeForm, formData, setFormData }) {
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({ ...prevState, [name]: value }));
+    }
+
     return (
         <section className='experience-details-container'>
             <div className='experience-top'>
@@ -136,39 +145,39 @@ function ExperienceDetails( {isExpanded, onToggle, isFormActive, showForm, close
                             <label htmlFor="company-name">
                                 <span className='label-text'>Company Name</span>
                             </label>
-                            <input type="text" id='company-name' placeholder='Enter Company'/>
+                            <input type="text" name='company' id='company-name' placeholder='Enter Company' value={formData.company} onChange={handleInputChange}/>
                         </div>
                         <div className='input-group'>
                             <label htmlFor="position-title">
                                 <span className='label-text'>Position Title</span>
                             </label>
-                            <input type="text" id='position-title' placeholder='Enter Position Title'/>
+                            <input type="text" name='position' id='position-title' placeholder='Enter Position Title' value={formData.position} onChange={handleInputChange}/>
                         </div>
                         <div className='dates-group'>
                             <div className='input-group'>
                                 <label htmlFor="date">
                                     <span className='label-text'>Start Date</span>
                                 </label>
-                                <input type="text" id='date' placeholder='Enter Start Date'/>
+                                <input type="text" name='startDate' id='date' placeholder='Enter Start Date' value={formData.startDate} onChange={handleInputChange}/>
                             </div>
                             <div className='input-group'>
                                 <label htmlFor="date">
                                     <span className='label-text'>End Date</span>
                                 </label>
-                                <input type="text" id='date' placeholder='Enter End Date'/>
+                                <input type="text" name='endDate' id='date' placeholder='Enter End Date' value={formData.endDate} onChange={handleInputChange}/>
                             </div>
                         </div>
                         <div className='input-group'>
                                 <label htmlFor="location">
                                     <span className='label-text'>Location</span>
                                 </label>
-                                <input type="text" id='location' placeholder='Enter Location'/>
+                                <input type="text" name='location' id='location' placeholder='Enter Location' value={formData.location} onChange={handleInputChange}/>
                         </div>
                         <div className='input-group'>
                             <label htmlFor="description">
                                 <span className='label-text'>Description</span>
                             </label>
-                            <textarea type="text" id='description' placeholder='Enter Description' /> 
+                            <textarea type="text" name='description' id='description' placeholder='Enter Description' value={formData.description} onChange={handleInputChange}/> 
                         </div>
                         <div className='form-buttons'>
                             <button className='delete-btn' type='button' onClick={closeForm}>
@@ -193,6 +202,23 @@ function FormContainer() {
     const [EducationForm, setEducationForm] = useState(null);
     const [ExperienceForm, setExperienceForm] = useState(null);
 
+    const [educationFormData, setEducationFormData] = useState({
+        school: '',
+        degree: '',
+        startDate: '',
+        endDate: '',
+        location: ''
+    });
+
+    const [experienceFormData, setExperienceFormData] = useState({
+        company: '',
+        position: '',
+        startDate: '',
+        endDate: '',
+        location: '',
+        description: ''
+    });
+
     function handleToggle(section) {
         setExpandedSection(prevSection => (prevSection === section ? null : section));
     }
@@ -207,10 +233,25 @@ function FormContainer() {
 
     function closeEducationForm() {
         setEducationForm(false);
+        setEducationFormData({
+            school: '',
+            degree: '',
+            startDate: '',
+            endDate: '',
+            location: ''
+        })
     }
 
     function closeExperienceForm() {
         setExperienceForm(false);
+        setExperienceFormData({
+            company: '',
+            position: '',
+            startDate: '',
+            endDate: '',
+            location: '',
+            description: ''
+        })
     }
 
     return (
@@ -223,6 +264,8 @@ function FormContainer() {
                 isFormActive={EducationForm === true}
                 showForm={() => showEducationForm()}
                 closeForm={() => closeEducationForm()}
+                formData={educationFormData}
+                setFormData={setEducationFormData}
             />
             <ExperienceDetails 
                 isExpanded={expandedSection === 'experience'}
@@ -230,6 +273,8 @@ function FormContainer() {
                 isFormActive={ExperienceForm === true}
                 showForm={() => showExperienceForm()}
                 closeForm={() => closeExperienceForm()}
+                formData={experienceFormData}
+                setFormData={setExperienceFormData}
             />
         </div>
     )
