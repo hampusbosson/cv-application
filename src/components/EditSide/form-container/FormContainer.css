@@ -34,11 +34,38 @@ h1 {
     font-family: 'noto-bold';
 }
 
-input {
+input, textarea {
+    font-family: 'noto-regular';
     outline: none; /* Remove default outline */
     border: none; /* Remove any default border */
     box-shadow: none; /* Remove any default box-shadow */
     background: none; /* Remove any default background */
+    padding-left: 10px;
+    height: 2rem;
+    border-radius: 10px;
+    background-color: rgba(211, 211, 211, 0.267);
+    border: 2px solid transparent;
+    transition: border 0.25s, box-shadow 0.25s;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0); /* Initial box-shadow */
+}
+
+input:hover, input:focus, textarea:hover, textarea:focus {
+    border: 2px solid #007BFF; /* Optional: Change border color on focus/hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Define the box-shadow on focus/hover */
+}
+
+textarea {
+    max-width: 100%; /* Prevents horizontal resizing */
+    resize: vertical; /* Allow only vertical resizing */
+    min-height: 2rem;
+    align-content: center;
+}
+
+button {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /*TOP BUTTONS*/
@@ -57,10 +84,6 @@ input {
     padding: 0; 
     border: none;
     background: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-size: 0.9rem;
 }
 
@@ -107,22 +130,7 @@ input {
     gap: 0.5rem;
 } 
 
-.input-element {
-    padding-left: 10px;
-    height: 2rem;
-    border-radius: 10px;
-    background-color: rgba(211, 211, 211, 0.267);
-    border: 2px solid transparent;
-    transition: border 0.25s, box-shadow 0.25s;
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0); /* Initial box-shadow */
-}
-
-.input-element:hover, .input-element:focus {
-    border: 2px solid #007BFF; /* Optional: Change border color on focus/hover */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Define the box-shadow on focus/hover */
-}
-
-/* EDUCATION AND EXPERIENCE FORMS */
+/* EDUCATION AND EXPERIENCE CONTAINERS */
 
 .education-top, .experience-top {
     display: flex;
@@ -201,6 +209,100 @@ input {
     display: none;
 }
 
+/* EDUCATION AND EXPERIENCE FORMS */
+
+.experience-form, .education-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    gap: 1rem;
+    margin-bottom: -1rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.dates-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.dates-group > * {
+    width: 48%;
+}
+
+.label-text {
+    font-family: 'noto-semibold';
+}
+
+.form-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    height: 2.1rem;
+}
+
+.delete-btn {
+    width: 6rem;
+    outline: 1px solid grey;
+    border: none;
+    border-radius: 4px;
+    color: grey;
+    background-color: initial;
+    font-family: 'noto-bold';
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.trashcan-form {
+    width: 18px;
+    fill: grey;
+}
+
+.main-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 0.8rem;
+}
+
+.cancel-btn {
+    font-size: 0.85rem;
+    font-family: 'noto-bold';
+    color: grey;
+    outline: 1px solid grey;
+    border: none;
+    border-radius: 4px;
+    background-color: initial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 4.5rem;
+}
+
+.save-btn {
+    width: 3.7rem;
+    font-size: 0.85rem;
+    font-family: 'noto-bold';
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    background-color: #187ff5;
+    color: white;
+}
+
 .experience-form.hidden, .education-form.hidden {
     display: none;
 }
+
