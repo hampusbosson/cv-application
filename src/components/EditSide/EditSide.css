@@ -1,3 +1,10 @@
 .edit-side {
-    background-color: red;
+    width: 600px;
+    display: flex;
+    gap: 2.5rem;
 }
+
+
+
+
+

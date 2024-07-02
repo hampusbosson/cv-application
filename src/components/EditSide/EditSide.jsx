@@ -1,10 +1,12 @@
 import './EditSide.css'
+import FormContainer from './form-container/FormContainer'
+import SideBar from './sidebar/SideBar'
 
 function EditSide() {
     return (
         <div className="edit-side">
-            <p>hello world</p>
-
+            <SideBar />
+            <FormContainer />
         </div>
     )
 }
