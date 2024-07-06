@@ -40,7 +40,7 @@ function PersonalDetails() {
     )
 }
 
-function EducationDetails({ isExpanded, onToggle, isFormActive, showForm, closeForm, formData, setFormData }) {
+function EducationDetails({ isExpanded, onToggle, isFormActive, showForm, deleteForm, closeForm, saveForm, formSaved, formData, setFormData, savedEntries, editEntry, editingIndex }) { 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({ ...prevState, [name]: value }));
@@ -60,7 +60,12 @@ function EducationDetails({ isExpanded, onToggle, isFormActive, showForm, closeF
                 </button>
             </div>
             {isExpanded && (
-                <div className='education-list'>
+                <div className='education-data'>
+                    {formSaved && !isFormActive && savedEntries.map((entry, index) => (
+                        <button key={index} className='saved-form-btn' onClick={() => editEntry(index)}>
+                            {entry.school}
+                        </button>
+                    ))}
                     <button className={`add-education-btn ${isFormActive ? 'hidden' : ''}`} onClick={showForm}>
                         {icons.plusIcon}
                         Education
@@ -99,13 +104,13 @@ function EducationDetails({ isExpanded, onToggle, isFormActive, showForm, closeF
                                 <input type="text" name='location' id='location' placeholder='Enter Location' value={formData.location} onChange={handleInputChange}/>
                         </div>
                         <div className='form-buttons'>
-                            <button className='delete-btn' type='button' onClick={closeForm}>
+                            <button className='delete-btn' type='button' onClick={() => deleteForm(editingIndex)}>
                                 {icons.lowerTrashcanIcon}
                                 Delete
                             </button>
                             <div className='main-buttons'>
                                 <button className='cancel-btn' type='button' onClick={closeForm}>Cancel</button>
-                                <button className='save-btn' type='button'>Save</button>
+                                <button className='save-btn' type='button' onClick={saveForm}>Save</button>
                             </div>
                         </div>
                     </form>
@@ -115,7 +120,7 @@ function EducationDetails({ isExpanded, onToggle, isFormActive, showForm, closeF
     )
 }
 
-function ExperienceDetails( {isExpanded, onToggle, isFormActive, showForm, closeForm, formData, setFormData }) {
+function ExperienceDetails( {isExpanded, onToggle, isFormActive, showForm, deleteForm, closeForm, saveForm, formSaved, formData, setFormData, savedEntries, editEntry, editingIndex }) {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({ ...prevState, [name]: value }));
@@ -135,7 +140,12 @@ function ExperienceDetails( {isExpanded, onToggle, isFormActive, showForm, close
                 </button>
             </div>
             {isExpanded && (
-                <div className='experience-list'>
+                <div className='experience-data'>
+                    {formSaved && !isFormActive && savedEntries.map((entry, index) => (
+                        <button key={index} className='saved-form-btn' onClick={() => editEntry(index)}>
+                            {entry.company}
+                        </button>
+                    ))}
                     <button className={`add-experience-btn ${isFormActive ? 'hidden' : ''}`} onClick={showForm}>
                         {icons.plusIcon}
                         Experience
@@ -180,13 +190,13 @@ function ExperienceDetails( {isExpanded, onToggle, isFormActive, showForm, close
                             <textarea type="text" name='description' id='description' placeholder='Enter Description' value={formData.description} onChange={handleInputChange}/> 
                         </div>
                         <div className='form-buttons'>
-                            <button className='delete-btn' type='button' onClick={closeForm}>
+                            <button className='delete-btn' type='button' onClick={() => deleteForm(editingIndex)}>
                                 {icons.lowerTrashcanIcon}
                                 Delete
                             </button>
                             <div className='main-buttons'>
                                 <button className='cancel-btn' type='button' onClick={closeForm}>Cancel</button>
-                                <button className='save-btn' type='button'>Save</button>
+                                <button className='save-btn' type='button' onClick={saveForm}>Save</button>
                             </div>
                         </div>
                     </form>
@@ -219,16 +229,50 @@ function FormContainer() {
         description: ''
     });
 
+    const [savedEducation, setSavedEducation] = useState([]);
+    const [savedExperience, setSavedExperience] = useState([]);
+    const [editingEducationIndex, setEditingEducationIndex] = useState(null);
+    const [editingExperienceIndex, setEditingExperienceIndex] = useState(null);
+    const [educationFormSaved, setEducationFormSaved] = useState(null);
+    const [experiendeFormSaved, setExperienceFormSaved] = useState(null);
+
+
     function handleToggle(section) {
         setExpandedSection(prevSection => (prevSection === section ? null : section));
     }
 
-    function showEducationForm() {
+    function showEducationForm(index = null) {
         setEducationForm(true);
+        if (index !== null) {
+            setEducationFormData(savedEducation[index]);
+            setEditingEducationIndex(index);
+        } else {
+            setEducationFormData({
+                school: '',
+                degree: '',
+                startDate: '',
+                endDate: '',
+                location: ''
+            });
+            setEditingEducationIndex(null);
+        }
     }
 
-    function showExperienceForm() {
+    function showExperienceForm(index = null) {
         setExperienceForm(true);
+        if (index !== null) {
+            setExperienceFormData(savedExperience[index]);
+            setEditingExperienceIndex(index);
+        } else {
+            setExperienceFormData({
+                school: '',
+                degree: '',
+                startDate: '',
+                endDate: '',
+                location: ''
+            });
+            setEditingExperienceIndex(null);
+        }
     }
 
     function closeEducationForm() {
@@ -254,6 +298,42 @@ function FormContainer() {
         })
     }
 
+    function saveEducationForm() {
+        if (editingEducationIndex === null) {
+            setSavedEducation([...savedEducation, educationFormData])
+        } else {
+            const updatedEductaion = [...savedEducation];
+            updatedEductaion[editingEducationIndex] = educationFormData;
+            setSavedEducation(updatedEductaion);
+        }
+        setEducationFormSaved(true);
+        closeEducationForm();
+    }
+
+    function saveExperienceForm() {
+        if (editingExperienceIndex === null) {
+            setSavedExperience([...savedExperience, experienceFormData]);
+        } else {
+            const updatedExperience = [...savedExperience];
+            updatedExperience[editingExperienceIndex] = experienceFormData;
+            setSavedExperience(updatedExperience);
+        }
+        setExperienceFormSaved(true);
+        closeExperienceForm();
+    }
+
+    function deleteEducationForm(index) {
+        const updatedEducation = savedEducation.filter((_, i) => i !== index);
+        setSavedEducation(updatedEducation);
+        closeEducationForm();
+    }
+
+    function deleteExperienceForm(index) {
+        const updatedExperience = savedExperience.filter((_, i) => i !== index);
+        setSavedExperience(updatedExperience);
+        closeExperienceForm();
+    }
+
     return (
         <div className='form-container'>
             <TopButtons />
@@ -261,20 +341,32 @@ function FormContainer() {
             <EducationDetails 
                 isExpanded={expandedSection === 'education'}
                 onToggle={() => handleToggle('education')}
-                isFormActive={EducationForm === true}
+                isFormActive={EducationForm}
                 showForm={() => showEducationForm()}
+                deleteForm={deleteEducationForm}
                 closeForm={() => closeEducationForm()}
+                saveForm={saveEducationForm}
+                formSaved={educationFormSaved}
                 formData={educationFormData}
                 setFormData={setEducationFormData}
+                savedEntries={savedEducation}
+                editEntry={showEducationForm}
+                editingIndex={editingEducationIndex}
             />
             <ExperienceDetails 
                 isExpanded={expandedSection === 'experience'}
                 onToggle={() => handleToggle('experience')}
-                isFormActive={ExperienceForm === true}
+                isFormActive={ExperienceForm}
                 showForm={() => showExperienceForm()}
+                deleteForm={deleteExperienceForm}
                 closeForm={() => closeExperienceForm()}
+                saveForm={saveExperienceForm}
+                formSaved={experiendeFormSaved}
                 formData={experienceFormData}
                 setFormData={setExperienceFormData}
+                savedEntries={savedExperience}
+                editEntry={showExperienceForm}
+                editingIndex={editingExperienceIndex}
             />
         </div>
     )
