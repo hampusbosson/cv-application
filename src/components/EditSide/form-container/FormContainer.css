@@ -19,6 +19,7 @@
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+    min-width: 0;
 }
 
 .form-top-buttons, .personal-details-container, .education-details-container, .experience-details-container {
@@ -172,12 +173,31 @@ button {
     transform: rotate(180deg);
 }
 
-.education-list, .experience-list {
+.education-data, .experience-data {
     width: 100%;
+    min-width: none;
     display: flex;
     justify-content: center;
     margin-bottom: 1rem;
     margin-top: 1rem;
+    flex-wrap: wrap;
+    min-width: 0; /* Ensure it can shrink */
+    box-sizing: border-box;
+}
+
+.education-list, .experience-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -1rem;
+}
+
+.saved-form-btn {
+    width: 100%;
+    background-color: white;
+    border: none;
+    border-bottom: 8px solid black;
 }
 
 .add-education-btn, .add-experience-btn {
@@ -306,3 +326,14 @@ button {
     display: none;
 }
 
+.education-data > *, .experience-data > * {
+    flex: 1 1 auto; /* Allow the children to grow and shrink */
+    min-width: 0; /* Prevent overflow */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+  
+.education-details-container > *, .experience-details-container > * {
+    flex: 1 1 auto; /* Allow the children to grow and shrink */
+    min-width: 0; /* Prevent overflow */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
