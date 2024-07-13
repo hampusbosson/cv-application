@@ -3,12 +3,12 @@
     background-color: darkgray;
     min-width: 0; /* Prevent overflow */
     max-width: 780px;
+    height: 70rem; 
   }
 
   @media (max-width: 1100px) {
     .resume-side {
       max-width: 100%;
       width: 100%;
-
     }
   }
