@@ -1,0 +1,174 @@
+@font-face {
+    font-family: 'noto-regular';
+    src: url('/src/assets/fonts/NotoSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'noto-bold';
+    src: url('/src/assets/fonts/NotoSans-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'noto-semibold';
+    src: url('/src/assets/fonts/NotoSans-SemiBold.ttf');
+}
+
+h1 {
+    margin-top: 0.8rem;
+    font-family: 'noto-bold';
+}
+
+.customize-page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+.layout-container, .color-container, .font-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: white;
+    padding: 0.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.131);
+    padding-bottom: 1rem;
+}
+
+
+.layout-buttons, .color-option, .font-options {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 1rem;
+}
+
+/* layout buttons */
+
+.layout-buttons {
+    gap: 0.5rem;
+    margin-left: -0.3rem;
+}
+
+.layout-btn {
+    border: none;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    font-family: 'noto-regular';
+    font-size: 0.9rem;
+    margin-bottom: -0.6rem;
+}
+
+.layout-box1, .layout-box2, .layout-box3 {
+    width: 3.1rem;
+    height: 3.1rem;
+    background-color: red;
+    margin-bottom: -0.7rem;
+    border-radius: 8px;
+    border: 1px solid gray;
+}
+
+.layout-box1 {
+    background: linear-gradient(180deg, #0e374e, 50%, #fff 50%);
+}
+
+.layout-box2 {
+    background: linear-gradient(90deg, #0e374e, 50%, #fff 50%);
+}
+
+.layout-box3 {
+    background: linear-gradient(90deg, #fff, 50%, #0e374e 50%);
+}
+
+/* color button */
+
+.color-option {
+    gap: 0.6rem;
+    margin-top: -1.2rem;
+    margin-bottom: -0.8rem;
+}
+
+.color-text {
+    font-family: 'noto-regular';
+    font-size: 1.2rem;
+}
+
+.color-button {
+    -webkit-appearance: none; /* For Chrome */
+    -moz-appearance: none; /* For Firefox */
+    appearance: none; /* For other browsers */
+    border: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    outline: none;
+}
+
+/* Additional styles to remove inner default styling */
+.color-button::-webkit-color-swatch-wrapper {
+padding: 0;
+}
+
+.color-button::-webkit-color-swatch {
+border: none;
+border-radius: 50%;
+}
+
+.color-button::-moz-color-swatch {
+border: none;
+border-radius: 50%;
+}
+
+.color-button:hover, .color-button:focus {
+  outline: none;
+  border: none;
+  box-shadow: none; /* Remove any box-shadow if applied */
+}
+
+/* font buttons */
+
+.font-container {
+    padding-bottom: 1.3rem;
+}
+
+.font-options {
+    gap: 0.5rem;
+}
+
+.font-button {
+    border: 1px solid black;
+    background-color: transparent;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    height: 4.5rem;
+    width: 3.7rem;
+}
+
+.font-button.serif {
+    font-family: sans-serif;
+}
+
+.font-button.sans {
+    font-family: serif;
+}
+
+.font-button.mono {
+    font-family: monospace;
+}
+
+.font-header {
+    font-size: 1.6rem;
+}
+
+.font-name {
+    font-size: 1rem;
+}
