@@ -1,10 +1,7 @@
 import './SideBar.css'
-import { useState } from 'react';
 import icons from '../../../assets/icons/Icons';
 
-function SideBar() {
-    const [activeButton, setActiveButton] = useState('content');
-
+function SideBar({ activeButton, setActiveButton }) {
     function handleClick(buttonName) {
         setActiveButton(buttonName)
     }
