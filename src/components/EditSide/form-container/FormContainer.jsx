@@ -83,6 +83,11 @@ function EducationDetails({
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
+  const handleSave = () => {
+    const companyName = document.getElementById('school-name').value;
+    saveForm(companyName);
+  };
+
   return (
     <section className="education-details-container">
       <div className="education-top">
@@ -224,7 +229,7 @@ function EducationDetails({
                 >
                   Cancel
                 </button>
-                <button className="save-btn" type="button" onClick={saveForm}>
+                <button className="save-btn" type="button" onClick={handleSave}>
                   Save
                 </button>
               </div>
@@ -256,6 +261,11 @@ function ExperienceDetails({
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  const handleSave = () => {
+    const companyName = document.getElementById('company-name').value;
+    saveForm(companyName);
   };
 
   return (
@@ -412,7 +422,7 @@ function ExperienceDetails({
                 >
                   Cancel
                 </button>
-                <button className="save-btn" type="button" onClick={saveForm}>
+                <button className="save-btn" type="button" onClick={handleSave}>
                   Save
                 </button>
               </div>
@@ -519,7 +529,11 @@ function FormContainer() {
     });
   }
 
-  function saveEducationForm() {
+  function saveEducationForm(input) {
+    if (input === '') {
+        alert('please enter school / university name');
+        return;
+    }
     if (editingEducationIndex === null) {
       setSavedEducation([...savedEducation, educationFormData]);
       setEducationInfoVisible([...educationInfoVisible, true]);
@@ -532,7 +546,11 @@ function FormContainer() {
     closeEducationForm();
   }
 
-  function saveExperienceForm() {
+  function saveExperienceForm(input) {
+    if (input === '') {
+        alert('please enter company name');
+        return;
+    }
     if (editingExperienceIndex === null) {
       setSavedExperience([...savedExperience, experienceFormData]);
       setExperienceInfoVisible([...experienceInfoVisible, true]);
