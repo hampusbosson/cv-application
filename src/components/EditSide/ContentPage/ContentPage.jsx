@@ -1,6 +1,6 @@
 import "./ContentPage.css";
 import icons from "../../../assets/icons/Icons";
-import { useState } from "react";
+import CustomizePage from "../CustomizePage/CustomizePage";
 
 function TopButtons() {
   return (
@@ -434,209 +434,156 @@ function ExperienceDetails({
   );
 }
 
-function FormContent() {
-    const [expandedSection, setExpandedSection] = useState(null);
-    const [EducationForm, setEducationForm] = useState(null);
-    const [ExperienceForm, setExperienceForm] = useState(null);
-  
-    const [educationFormData, setEducationFormData] = useState({
-      school: "",
-      degree: "",
-      startDate: "",
-      endDate: "",
-      location: "",
-    });
-  
-    const [experienceFormData, setExperienceFormData] = useState({
-      company: "",
-      position: "",
-      startDate: "",
-      endDate: "",
-      location: "",
-      description: "",
-    });
-  
-    const [savedEducation, setSavedEducation] = useState([]);
-    const [savedExperience, setSavedExperience] = useState([]);
-    const [editingEducationIndex, setEditingEducationIndex] = useState(null);
-    const [editingExperienceIndex, setEditingExperienceIndex] = useState(null);
-    const [educationFormSaved, setEducationFormSaved] = useState(null);
-    const [experiendeFormSaved, setExperienceFormSaved] = useState(null);
-    const [educationInfoVisible, setEducationInfoVisible] = useState(Array(savedEducation.length).fill(true));
-    const [experienceInfoVisible, setExperienceInfoVisible] = useState(Array(savedExperience.length).fill(true));
-  
-  
-    function handleToggle(section) {
-      setExpandedSection((prevSection) =>
-        prevSection === section ? null : section,
-      );
-    }
-  
-    function showEducationForm(index = null) {
-      setEducationForm(true);
-      if (index !== null) {
-        setEducationFormData(savedEducation[index]);
-        setEditingEducationIndex(index);
-      } else {
-        setEducationFormData({
-          school: "",
-          degree: "",
-          startDate: "",
-          endDate: "",
-          location: "",
-        });
-        setEditingEducationIndex(null);
-      }
-    }
-  
-    function showExperienceForm(index = null) {
-      setExperienceForm(true);
-      if (index !== null) {
-        setExperienceFormData(savedExperience[index]);
-        setEditingExperienceIndex(index);
-      } else {
-        setExperienceFormData({
-          school: "",
-          degree: "",
-          startDate: "",
-          endDate: "",
-          location: "",
-        });
-        setEditingExperienceIndex(null);
-      }
-    }
-  
-    function closeEducationForm() {
-      setEducationForm(false);
-      setEducationFormData({
-        school: "",
-        degree: "",
-        startDate: "",
-        endDate: "",
-        location: "",
-      });
-    }
-  
-    function closeExperienceForm() {
-      setExperienceForm(false);
-      setExperienceFormData({
-        company: "",
-        position: "",
-        startDate: "",
-        endDate: "",
-        location: "",
-        description: "",
-      });
-    }
-  
-    function saveEducationForm(input) {
-      if (input === '') {
-          alert('please enter school / university name');
-          return;
-      }
-      if (editingEducationIndex === null) {
-        setSavedEducation([...savedEducation, educationFormData]);
-        setEducationInfoVisible([...educationInfoVisible, true]);
-      } else {
-        const updatedEductaion = [...savedEducation];
-        updatedEductaion[editingEducationIndex] = educationFormData;
-        setSavedEducation(updatedEductaion);
-      }
-      setEducationFormSaved(true);
-      closeEducationForm();
-    }
-  
-    function saveExperienceForm(input) {
-      if (input === '') {
-          alert('please enter company name');
-          return;
-      }
-      if (editingExperienceIndex === null) {
-        setSavedExperience([...savedExperience, experienceFormData]);
-        setExperienceInfoVisible([...experienceInfoVisible, true]);
-      } else {
-        const updatedExperience = [...savedExperience];
-        updatedExperience[editingExperienceIndex] = experienceFormData;
-        setSavedExperience(updatedExperience);
-      }
-      setExperienceFormSaved(true);
-      closeExperienceForm();
-    }
-  
-    function deleteEducationForm(index) {
-      const updatedEducation = savedEducation.filter((_, i) => i !== index);
-      setSavedEducation(updatedEducation);
-      closeEducationForm();
-    }
-  
-    function deleteExperienceForm(index) {
-      const updatedExperience = savedExperience.filter((_, i) => i !== index);
-      setSavedExperience(updatedExperience);
-      closeExperienceForm();
-    }
-  
-    function toggleEducationVisibility(index) {
-      setEducationInfoVisible(prevState => prevState.map((visible, i) => (i === index ? !visible : visible)));
-    }
-  
-    function toggleExperienceVisibility(index) {
-      setExperienceInfoVisible(prevState => prevState.map((visible, i) => (i === index ? !visible : visible)));
-    }
+function FormContent({
+  expandedSection,
+  EducationForm,
+  ExperienceForm,
+  educationFormData,
+  setEducationFormData,
+  experienceFormData,
+  setExperienceFormData,
+  savedEducation,
+  savedExperience,
+  editingEducationIndex,
+  editingExperienceIndex,
+  educationFormSaved,
+  experienceFormSaved,
+  educationInfoVisible,
+  experienceInfoVisible,
+  handleToggle,
+  showEducationForm,
+  showExperienceForm,
+  closeEducationForm,
+  closeExperienceForm,
+  saveEducationForm,
+  saveExperienceForm,
+  deleteEducationForm,
+  deleteExperienceForm,
+  toggleEducationVisibility,
+  toggleExperienceVisibility
+}) {
 
-    return (
-        <div className="form-content">
-            <PersonalDetails />
-            <EducationDetails
-            isExpanded={expandedSection === "education"}
-            onToggle={() => handleToggle("education")}
-            isFormActive={EducationForm}
-            showForm={() => showEducationForm()}
-            deleteForm={deleteEducationForm}
-            closeForm={() => closeEducationForm()}
-            saveForm={saveEducationForm}
-            formSaved={educationFormSaved}
-            formData={educationFormData}
-            setFormData={setEducationFormData}
-            savedEntries={savedEducation}
-            editEntry={showEducationForm}
-            editingIndex={editingEducationIndex}
-            toggleVisible={toggleEducationVisibility}
-            isVisible={educationInfoVisible}
-            />
-            <ExperienceDetails
-            isExpanded={expandedSection === "experience"}
-            onToggle={() => handleToggle("experience")}
-            isFormActive={ExperienceForm}
-            showForm={() => showExperienceForm()}
-            deleteForm={deleteExperienceForm}
-            closeForm={() => closeExperienceForm()}
-            saveForm={saveExperienceForm}
-            formSaved={experiendeFormSaved}
-            formData={experienceFormData}
-            setFormData={setExperienceFormData}
-            savedEntries={savedExperience}
-            editEntry={showExperienceForm}
-            editingIndex={editingExperienceIndex}
-            toggleVisible={toggleExperienceVisibility}
-            isVisible={experienceInfoVisible}
-            />
-        </div>
-    )
-
-
+  return (
+    <div className="form-content">
+      <PersonalDetails />
+      <EducationDetails
+        isExpanded={expandedSection === "education"}
+        onToggle={() => handleToggle("education")}
+        isFormActive={EducationForm}
+        showForm={() => showEducationForm()}
+        deleteForm={deleteEducationForm}
+        closeForm={() => closeEducationForm()}
+        saveForm={saveEducationForm}
+        formSaved={educationFormSaved}
+        formData={educationFormData}
+        setFormData={setEducationFormData}
+        savedEntries={savedEducation}
+        editEntry={showEducationForm}
+        editingIndex={editingEducationIndex}
+        toggleVisible={toggleEducationVisibility}
+        isVisible={educationInfoVisible}
+      />
+      <ExperienceDetails
+        isExpanded={expandedSection === "experience"}
+        onToggle={() => handleToggle("experience")}
+        isFormActive={ExperienceForm}
+        showForm={() => showExperienceForm()}
+        deleteForm={deleteExperienceForm}
+        closeForm={() => closeExperienceForm()}
+        saveForm={saveExperienceForm}
+        formSaved={experienceFormSaved}
+        formData={experienceFormData}
+        setFormData={setExperienceFormData}
+        savedEntries={savedExperience}
+        editEntry={showExperienceForm}
+        editingIndex={editingExperienceIndex}
+        toggleVisible={toggleExperienceVisibility}
+        isVisible={experienceInfoVisible}
+      />
+    </div>
+  );
 }
 
-function FormContainer( {activeButton} ) {
-
+function FormContainer({
+  activeButton,
+  expandedSection,
+  EducationForm,
+  ExperienceForm,
+  educationFormData,
+  setEducationFormData,
+  experienceFormData,
+  setExperienceFormData,
+  savedEducation,
+  setSavedEducation,
+  savedExperience,
+  setSavedExperience,
+  editingEducationIndex,
+  setEditingEducationIndex,
+  editingExperienceIndex,
+  setEditingExperienceIndex,
+  educationFormSaved,
+  setEducationFormSaved,
+  experienceFormSaved,
+  setExperienceFormSaved,
+  educationInfoVisible,
+  setEducationInfoVisible,
+  experienceInfoVisible,
+  setExperienceInfoVisible,
+  handleToggle,
+  showEducationForm,
+  showExperienceForm,
+  closeEducationForm,
+  closeExperienceForm,
+  saveEducationForm,
+  saveExperienceForm,
+  deleteEducationForm,
+  deleteExperienceForm,
+  toggleEducationVisibility,
+  toggleExperienceVisibility
+}) {
   return (
     <div className="form-container">
       <TopButtons />
       {activeButton === 'content' ? (
-        <FormContent />
+        <FormContent
+          expandedSection={expandedSection}
+          EducationForm={EducationForm}
+          ExperienceForm={ExperienceForm}
+          educationFormData={educationFormData}
+          setEducationFormData={setEducationFormData}
+          experienceFormData={experienceFormData}
+          setExperienceFormData={setExperienceFormData}
+          savedEducation={savedEducation}
+          setSavedEducation={setSavedEducation}
+          savedExperience={savedExperience}
+          setSavedExperience={setSavedExperience}
+          editingEducationIndex={editingEducationIndex}
+          setEditingEducationIndex={setEditingEducationIndex}
+          editingExperienceIndex={editingExperienceIndex}
+          setEditingExperienceIndex={setEditingExperienceIndex}
+          educationFormSaved={educationFormSaved}
+          setEducationFormSaved={setEducationFormSaved}
+          experienceFormSaved={experienceFormSaved}
+          setExperienceFormSaved={setExperienceFormSaved}
+          educationInfoVisible={educationInfoVisible}
+          setEducationInfoVisible={setEducationInfoVisible}
+          experienceInfoVisible={experienceInfoVisible}
+          setExperienceInfoVisible={setExperienceInfoVisible}
+          handleToggle={handleToggle}
+          showEducationForm={showEducationForm}
+          showExperienceForm={showExperienceForm}
+          closeEducationForm={closeEducationForm}
+          closeExperienceForm={closeExperienceForm}
+          saveEducationForm={saveEducationForm}
+          saveExperienceForm={saveExperienceForm}
+          deleteEducationForm={deleteEducationForm}
+          deleteExperienceForm={deleteExperienceForm}
+          toggleEducationVisibility={toggleEducationVisibility}
+          toggleExperienceVisibility={toggleExperienceVisibility}
+        />
       ) : (
-        <div>hello world</div>
+        <CustomizePage />
       )}
-
     </div>
   );
 }
