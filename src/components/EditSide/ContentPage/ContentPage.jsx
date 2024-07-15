@@ -541,7 +541,9 @@ function FormContainer({
   toggleEducationVisibility,
   toggleExperienceVisibility,
   activeFontButton,
-  setActiveFontButton
+  setActiveFontButton,
+  activeFontColor,
+  setActiveFontColor
 }) {
   return (
     <div className="form-container">
@@ -587,6 +589,8 @@ function FormContainer({
         <CustomizePage 
           activeFontButton={activeFontButton}
           setActiveFontButton={setActiveFontButton}
+          activeFontColor={activeFontColor}
+          setActiveFontColor={setActiveFontColor}
         />
       )}
     </div>

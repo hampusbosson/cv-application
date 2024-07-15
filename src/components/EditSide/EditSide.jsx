@@ -6,6 +6,7 @@ import SideBar from './sidebar/SideBar';
 function EditSide() {
     const [activeButton, setActiveButton] = useState('content');
     const [activeFontButton, setActiveFontButton] = useState('sans');
+    const [activeFontColor, setActiveFontColor] = useState('#0e374e')
 
     const [expandedSection, setExpandedSection] = useState(null);
     const [EducationForm, setEducationForm] = useState(null);
@@ -197,6 +198,8 @@ function EditSide() {
               toggleExperienceVisibility={toggleExperienceVisibility}
               activeFontButton={activeFontButton}
               setActiveFontButton={setActiveFontButton}
+              activeFontColor={activeFontColor}
+              setActiveFontColor={setActiveFontColor}
             />
         </div>
     );
