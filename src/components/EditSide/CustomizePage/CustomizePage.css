@@ -153,6 +153,11 @@ border-radius: 50%;
     width: 3.7rem;
 }
 
+.font-active {
+    background-color: #0e374e;
+    color: white;
+}
+
 .font-button.serif {
     font-family: sans-serif;
 }

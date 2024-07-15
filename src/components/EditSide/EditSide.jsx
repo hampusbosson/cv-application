@@ -5,6 +5,7 @@ import SideBar from './sidebar/SideBar';
 
 function EditSide() {
     const [activeButton, setActiveButton] = useState('content');
+    const [activeFontButton, setActiveFontButton] = useState('sans');
 
     const [expandedSection, setExpandedSection] = useState(null);
     const [EducationForm, setEducationForm] = useState(null);
@@ -153,6 +154,8 @@ function EditSide() {
       setExperienceInfoVisible(prevState => prevState.map((visible, i) => (i === index ? !visible : visible)));
     }
 
+
+
     return (
         <div className="edit-side">
             <SideBar activeButton={activeButton} setActiveButton={setActiveButton} />
@@ -192,6 +195,8 @@ function EditSide() {
               deleteExperienceForm={deleteExperienceForm}
               toggleEducationVisibility={toggleEducationVisibility}
               toggleExperienceVisibility={toggleExperienceVisibility}
+              activeFontButton={activeFontButton}
+              setActiveFontButton={setActiveFontButton}
             />
         </div>
     );

@@ -539,7 +539,9 @@ function FormContainer({
   deleteEducationForm,
   deleteExperienceForm,
   toggleEducationVisibility,
-  toggleExperienceVisibility
+  toggleExperienceVisibility,
+  activeFontButton,
+  setActiveFontButton
 }) {
   return (
     <div className="form-container">
@@ -582,7 +584,10 @@ function FormContainer({
           toggleExperienceVisibility={toggleExperienceVisibility}
         />
       ) : (
-        <CustomizePage />
+        <CustomizePage 
+          activeFontButton={activeFontButton}
+          setActiveFontButton={setActiveFontButton}
+        />
       )}
     </div>
   );
