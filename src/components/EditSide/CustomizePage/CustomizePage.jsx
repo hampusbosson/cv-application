@@ -65,15 +65,15 @@ function FontContainer({ activeFontButton, setActiveFontButton }) {
           <div className="font-name">Serif</div>
         </button>
         <button
-          className={`font-button sans ${activeFontButton === "sans" ? "font-active" : ""}`}
-          onClick={() => handleClick("sans")}
+          className={`font-button sans ${activeFontButton === "sans-serif" ? "font-active" : ""}`}
+          onClick={() => handleClick("sans-serif")}
         >
           <div className="font-header">Aa</div>
           <div className="font-name">Sans</div>
         </button>
         <button
-          className={`font-button mono ${activeFontButton === "mono" ? "font-active" : ""}`}
-          onClick={() => handleClick("mono")}
+          className={`font-button mono ${activeFontButton === "monospace" ? "font-active" : ""}`}
+          onClick={() => handleClick("monospace")}
         >
           <div className="font-header">Aa</div>
           <div className="font-name">Mono</div>

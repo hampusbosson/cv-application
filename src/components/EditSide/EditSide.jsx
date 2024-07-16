@@ -3,9 +3,8 @@ import './EditSide.css';
 import FormContainer from './ContentPage/ContentPage';
 import SideBar from './sidebar/SideBar';
 
-function EditSide( {activeFontColor, setActiveFontColor} ) {
+function EditSide( {activeFontColor, setActiveFontColor, activeFontButton, setActiveFontButton } ) {
     const [activeButton, setActiveButton] = useState('content');
-    const [activeFontButton, setActiveFontButton] = useState('sans');
 
     const [expandedSection, setExpandedSection] = useState(null);
     const [EducationForm, setEducationForm] = useState(null);

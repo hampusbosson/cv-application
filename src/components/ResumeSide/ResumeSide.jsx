@@ -7,21 +7,25 @@ const getLuminance = (color) => {
     return luminance;
 };
 
-function Header( {activeFontColor} ) {
+function Header( {activeFontColor, activeFontButton } ) {
     // Determine if the color is dark or light
     const isDark = getLuminance(activeFontColor) < 120; // Threshold can be adjusted
 
     const styles = {
         backgroundColor: activeFontColor,
-        color: isDark ? 'white' : 'black'
+        color: isDark ? 'white' : 'black',
     };
+
+    const font = {
+        fontFamily: activeFontButton
+    }
 
     const iconColor = isDark ? 'white' : 'black';
 
 
     return (
         <div className='resume-header' style={styles}>
-            <h1 className='header-name'>Example Name</h1>
+            <h1 className='header-name' style={font}>Example Name</h1>
             <div className='header-info'>
                 <div className='mail-info'>
                     {icons.enevelope(iconColor)}
@@ -40,7 +44,7 @@ function Header( {activeFontColor} ) {
     )
 }
 
-function Education( {activeFontColor} ) {
+function Education( {activeFontColor } ) {
     // Determine if the color is dark or light
     const isDark = getLuminance(activeFontColor) < 120; // Threshold can be adjusted
 
@@ -80,7 +84,7 @@ function Education( {activeFontColor} ) {
     )
 }
 
-function Experience( {activeFontColor} ) {
+function Experience( {activeFontColor } ) {
     // Determine if the color is dark or light
     const isDark = getLuminance(activeFontColor) < 120; // Threshold can be adjusted
 
@@ -122,11 +126,17 @@ function Experience( {activeFontColor} ) {
     )
 }
 
-function ResumeSide( {activeFontColor} ) {
+function ResumeSide( {activeFontColor, activeFontButton } ) {
+
+    const styles = {
+        fontFamily: activeFontButton
+    }
+
     return (
-        <section className='resume-side'>
+        <section className='resume-side' style={styles}>
             <Header 
             activeFontColor={activeFontColor}
+            activeFontButton={activeFontButton}
             />
             <Education 
             activeFontColor={activeFontColor}
