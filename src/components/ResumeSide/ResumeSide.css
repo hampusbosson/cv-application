@@ -4,6 +4,7 @@
     min-width: 0; /* Prevent overflow */
     max-width: 780px;
     height: 70rem; 
+    font-family: sans-serif;
   }
 
 @media (max-width: 1100px) {
@@ -13,16 +14,18 @@
   }
 }
 
+/* HEADER */ 
+
 .resume-header {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 0.2rem;
   background-color: #0e374e;
   color: white;
   padding-top: 1.5rem;
   padding-bottom: 1.2rem;
-  font-family: sans-serif;
 }
 
 .header-name {
@@ -32,8 +35,11 @@
 .header-info {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   gap: 1.5rem;
   margin-top: -1.7rem;
+  flex-wrap: wrap;
 }
 
 .mail-info, .phone-info, .location-info {
@@ -45,9 +51,73 @@
   font-size: 17px;
 }
 
+@media (max-width: 654px) {
+  .location-info {
+    margin-top: -2.3rem;
+  }
+}
+
 .envelope-icon, .phone-icon, .location-icon {
   width: 16px;
   margin: 0;
   padding: 0;
 }
+
+/* EDUCATION AND EXPERIENCE */
+
+.education-container, .experience-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.education-container {
+  margin-top: 1.5rem;
+}
+
+.resume-education-header, .resume-experience-header {
+  background-color: rgba(14, 55, 78, 0.07);
+  color: #0e374e; 
+  width: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  padding: 0.3rem;
+}
+
+.education-list, .experience-list {
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0; 
+  margin-top: -1rem;
+}
+
+.education-entry, .experience-entry {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.school, .company {
+  font-weight: bold;
+}
+
+.loc, .degree, .position, .position-description {
+  margin-top: -0.5rem;
+}
+
+.date-location-box {
+  min-width: 8.5rem;
+}
+
+.position-description {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 
