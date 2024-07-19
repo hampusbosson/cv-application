@@ -1,6 +1,10 @@
 import "./CustomizePage.css";
 
-function LayoutContainer( {activeFontColor} ) {
+function LayoutContainer( {activeFontColor, setActiveLayoutButton} ) {
+    function setLayout(button) {
+        setActiveLayoutButton(button);
+    }
+
   const layoutBox1Style = {
     background: `linear-gradient(180deg, ${activeFontColor} 50%, #fff 50%)`
   };
@@ -17,15 +21,15 @@ function LayoutContainer( {activeFontColor} ) {
     <div className="layout-container">
       <h1>Layout</h1>
       <div className="layout-buttons">
-        <button className="layout-btn">
+        <button className="layout-btn" onClick={() => setLayout('top')}>
           <div className="layout-box1" style={layoutBox1Style}></div>
           <p>Top</p>
         </button>
-        <button className="layout-btn">
+        <button className="layout-btn" onClick={() => setLayout('left')}>
           <div className="layout-box2" style={layoutBox2Style}></div>
           <p>Left</p>
         </button>
-        <button className="layout-btn">
+        <button className="layout-btn" onClick={() => setLayout('right')}>
           <div className="layout-box3" style={layoutBox3Style}></div>
           <p>Right</p>
         </button>
@@ -88,11 +92,13 @@ function CustomizePage({
   setActiveFontButton,
   activeFontColor,
   setActiveFontColor,
+  setActiveLayoutButton
 }) {
   return (
     <section className="customize-page" id="customize-page">
       <LayoutContainer 
         activeFontColor={activeFontColor}
+        setActiveLayoutButton={setActiveLayoutButton}
       />
       <ColorContainer
         activeFontColor={activeFontColor}

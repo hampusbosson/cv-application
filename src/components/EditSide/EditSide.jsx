@@ -3,7 +3,7 @@ import './EditSide.css';
 import FormContainer from './ContentPage/ContentPage';
 import SideBar from './sidebar/SideBar';
 
-function EditSide( {activeFontColor, setActiveFontColor, activeFontButton, setActiveFontButton } ) {
+function EditSide( {activeFontColor, setActiveFontColor, activeFontButton, setActiveFontButton, setActiveLayoutButton } ) {
     const [activeButton, setActiveButton] = useState('content');
 
     const [expandedSection, setExpandedSection] = useState(null);
@@ -198,6 +198,7 @@ function EditSide( {activeFontColor, setActiveFontColor, activeFontButton, setAc
               setActiveFontButton={setActiveFontButton}
               activeFontColor={activeFontColor}
               setActiveFontColor={setActiveFontColor}
+              setActiveLayoutButton={setActiveLayoutButton}
             />
         </div>
     );

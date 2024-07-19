@@ -543,7 +543,8 @@ function FormContainer({
   activeFontButton,
   setActiveFontButton,
   activeFontColor,
-  setActiveFontColor
+  setActiveFontColor,
+  setActiveLayoutButton
 }) {
   return (
     <div className="form-container">
@@ -591,6 +592,7 @@ function FormContainer({
           setActiveFontButton={setActiveFontButton}
           activeFontColor={activeFontColor}
           setActiveFontColor={setActiveFontColor}
+          setActiveLayoutButton={setActiveLayoutButton}
         />
       )}
     </div>

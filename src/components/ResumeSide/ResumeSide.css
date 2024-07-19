@@ -5,7 +5,25 @@
     max-width: 780px;
     height: 70rem; 
     font-family: sans-serif;
-  }
+    min-width: 37rem;
+}
+
+.resume-side.left {
+  display: flex;
+}
+
+.resume-side.right {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr; /* Two equal columns */
+  grid-template-rows: 1fr; /* One row */
+  grid-template-areas: 
+    "content header"; /* Place content first, then header */
+}
+
+.resume-side.right .resume-content {
+  grid-area: content;
+}
+
 
 @media (max-width: 1100px) {
   .resume-side {
@@ -16,7 +34,7 @@
 
 /* HEADER */ 
 
-.resume-header {
+.resume-header.top {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,17 +46,73 @@
   padding-bottom: 1.2rem;
 }
 
-.header-name {
-  font-size: 2rem;
+.resume-header.left {
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40rem;
+  min-width: 17rem;
 }
 
-.header-info {
+.resume-header.right {
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-name.top {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.header-name.left{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  text-align: center;
+  max-width: 5rem;
+}
+
+.header-name.right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  text-align: center;
+  max-width: 5rem;
+}
+
+.header-info.top {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 1.5rem;
   margin-top: -1.7rem;
+  flex-wrap: wrap;
+}
+
+.header-info.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: -1.2rem;
+  flex-wrap: wrap;
+}
+
+.header-info.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: -1.2rem;
   flex-wrap: wrap;
 }
 
@@ -49,12 +123,6 @@
   align-items: center;
   gap: 0.3rem;
   font-size: 17px;
-}
-
-@media (max-width: 654px) {
-  .location-info {
-    margin-top: -2.3rem;
-  }
 }
 
 .envelope-icon, .phone-icon, .location-icon {

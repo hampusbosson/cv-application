@@ -7,7 +7,7 @@ const getLuminance = (color) => {
     return luminance;
 };
 
-function Header( {activeFontColor, activeFontButton } ) {
+function Header( {activeFontColor, activeFontButton, activeLayoutButton } ) {
     // Determine if the color is dark or light
     const isDark = getLuminance(activeFontColor) < 120; // Threshold can be adjusted
 
@@ -24,22 +24,24 @@ function Header( {activeFontColor, activeFontButton } ) {
 
 
     return (
-        <div className='resume-header' style={styles}>
-            <h1 className='header-name' style={font}>Example Name</h1>
-            <div className='header-info'>
-                <div className='mail-info'>
-                    {icons.enevelope(iconColor)}
-                    <p>example.email@mail.co.uk</p>
+        <div className={`resume-header ${activeLayoutButton}`} style={styles}>
+                <div className={`header-name ${activeLayoutButton}`}>
+                    <h1 style={font}>Filippa Christiansson</h1>
                 </div>
-                <div className='phone-info'>
-                    {icons.phone(iconColor)}
-                    <p>+46 12-345 67 89</p>
+                <div className={`header-info ${activeLayoutButton}`}>
+                    <div className='mail-info'>
+                        {icons.enevelope(iconColor)}
+                        <p>example.email@mail.co.uk</p>
+                    </div>
+                    <div className='phone-info'>
+                        {icons.phone(iconColor)}
+                        <p>+46 12-345 67 89</p>
+                    </div>
+                    <div className='location-info'>
+                        {icons.location(iconColor)}
+                        <p>Stockholm, SWE</p>
+                    </div>
                 </div>
-                <div className='location-info'>
-                    {icons.location(iconColor)}
-                    <p>Stockholm, SWE</p>
-                </div>
-            </div>
         </div>
     )
 }
@@ -126,24 +128,27 @@ function Experience( {activeFontColor } ) {
     )
 }
 
-function ResumeSide( {activeFontColor, activeFontButton } ) {
+function ResumeSide( {activeFontColor, activeFontButton, activeLayoutButton } ) {
 
     const styles = {
         fontFamily: activeFontButton
     }
 
     return (
-        <section className='resume-side' style={styles}>
+        <section className={`resume-side ${activeLayoutButton}`} style={styles}>
             <Header 
             activeFontColor={activeFontColor}
             activeFontButton={activeFontButton}
+            activeLayoutButton={activeLayoutButton}
             />
+            <div className='resume-content'>
             <Education 
             activeFontColor={activeFontColor}
             />
             <Experience 
             activeFontColor={activeFontColor}
             />
+            </div>
         </section>
     )
 }
