@@ -100,7 +100,7 @@ h1 {
     -webkit-appearance: none; /* For Chrome */
     -moz-appearance: none; /* For Firefox */
     appearance: none; /* For other browsers */
-    border: none;
+    border: 1px solid gray;
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
@@ -128,7 +128,7 @@ border-radius: 50%;
 
 .color-button:hover, .color-button:focus {
   outline: none;
-  border: none;
+  border: 1px solid gray;
   box-shadow: none; /* Remove any box-shadow if applied */
 }
 
