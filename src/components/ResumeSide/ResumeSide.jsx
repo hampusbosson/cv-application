@@ -66,7 +66,7 @@ function Education({ activeFontColor, savedEducation, isVisible }) {
       </h2>
       <ul className="education-list-resume">
         {savedEducation.map((entry, index) => (
-          <li key={index} className="education-entry">
+          <li key={index} className="education-entry" style={isVisible[index] ? {} : { display: 'none' }}>
             <div className="date-location-box">
               <p className="date">
                 {entry.startDate} - {entry.endDate}
@@ -84,7 +84,7 @@ function Education({ activeFontColor, savedEducation, isVisible }) {
   );
 }
 
-function Experience({ activeFontColor, savedExperience }) {
+function Experience({ activeFontColor, savedExperience, isVisible }) {
   // Determine if the color is dark or light
   const isDark = getLuminance(activeFontColor) < 120; // Threshold can be adjusted
 
@@ -98,9 +98,9 @@ function Experience({ activeFontColor, savedExperience }) {
       <h2 className="resume-experience-header" style={styles}>
         Professional Experience
       </h2>
-      <ul className="experience-list">
+      <ul className="experience-list-resume">
         {savedExperience.map((entry, index) => (
-          <li key={index} className="experience-entry">
+          <li key={index} className="experience-entry" style={isVisible[index] ? {} : { display: 'none' }}>
             <div className="date-location-box">
               <p className="date">
                 {entry.startDate} - {entry.endDate}
