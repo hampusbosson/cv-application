@@ -59,6 +59,7 @@ function App() {
       savedExperience={savedExperience}
       setSavedEducation={setSavedEducation}
       setSavedExperience={setSavedExperience}
+      personalDetailsData={personalDetailsData}
       setPersonalDetailsData={setPersonalDetailsData}
       educationInfoVisible={educationInfoVisible}
       setEducationInfoVisible={setEducationInfoVisible}

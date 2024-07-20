@@ -34,15 +34,15 @@ function Header({
       </div>
       <div className={`header-info ${activeLayoutButton}`}>
         <div className="mail-info">
-          {icons.enevelope(iconColor)}
+          {personalDetailsData.email ? icons.enevelope(iconColor) :  null}
           <p>{personalDetailsData.email}</p>
         </div>
         <div className="phone-info">
-          {icons.phone(iconColor)}
+          {personalDetailsData.phone ? icons.phone(iconColor) : null}
           <p>{personalDetailsData.phone}</p>
         </div>
         <div className="location-info">
-          {icons.location(iconColor)}
+          {personalDetailsData.address ? icons.location(iconColor) : null}
           <p>{personalDetailsData.address}</p>
         </div>
       </div>
@@ -61,9 +61,11 @@ function Education({ activeFontColor, savedEducation, isVisible }) {
 
   return (
     <div className="education-container">
-      <h2 className="resume-education-header" style={styles}>
-        Education
-      </h2>
+      {savedEducation.length > 0 && (
+        <h2 className="resume-education-header" style={styles}>
+          Education
+        </h2>
+      )}
       <ul className="education-list-resume">
         {savedEducation.map((entry, index) => (
           <li key={index} className="education-entry" style={isVisible[index] ? {} : { display: 'none' }}>
@@ -95,9 +97,11 @@ function Experience({ activeFontColor, savedExperience, isVisible }) {
 
   return (
     <div className="experience-container">
-      <h2 className="resume-experience-header" style={styles}>
-        Professional Experience
-      </h2>
+      {savedExperience.length > 0 && (
+        <h2 className="resume-education-header" style={styles}>
+          Education
+        </h2>
+      )}
       <ul className="experience-list-resume">
         {savedExperience.map((entry, index) => (
           <li key={index} className="experience-entry" style={isVisible[index] ? {} : { display: 'none' }}>

@@ -2,10 +2,23 @@ import "./ContentPage.css";
 import icons from "../../../assets/icons/Icons";
 import CustomizePage from "../CustomizePage/CustomizePage";
 
-function TopButtons() {
+function TopButtons({ setPersonalDetailsData, setSavedEducation, setSavedExperience }) {
+
+  function clearResume() {
+    setPersonalDetailsData({
+      fullName: "",
+      email: "",
+      phone: "",
+      address: ""
+    });
+
+    setSavedEducation([]);
+    setSavedExperience([]);
+  }
+
   return (
     <div className="form-top-buttons">
-      <button id="clear-btn">
+      <button id="clear-btn" onClick={clearResume}>
         {icons.upperTrashcanIcon}
         Clear Resume
       </button>
@@ -15,7 +28,7 @@ function TopButtons() {
   );
 }
 
-function PersonalDetails({ setPersonalDetailsData }) {
+function PersonalDetails({ personalDetailsData, setPersonalDetailsData }) {
   function setData(e) {
     const {name, value} = e.target;
     setPersonalDetailsData((prevState) => ({...prevState, [name]: value}))
@@ -34,6 +47,7 @@ function PersonalDetails({ setPersonalDetailsData }) {
             className="input-element"
             placeholder="First and last name"
             onChange={setData}
+            value={personalDetailsData.fullName}
           />
         </li>
         <li className="details-element">
@@ -45,6 +59,7 @@ function PersonalDetails({ setPersonalDetailsData }) {
             className="input-element"
             placeholder="Enter email"
             onChange={setData}
+            value={personalDetailsData.email}
           />
         </li>
         <li className="details-element">
@@ -56,6 +71,7 @@ function PersonalDetails({ setPersonalDetailsData }) {
             className="input-element"
             placeholder="Enter phone number"
             onChange={setData}
+            value={personalDetailsData.phone}
           />
         </li>
         <li className="details-element">
@@ -67,6 +83,7 @@ function PersonalDetails({ setPersonalDetailsData }) {
             className="input-element"
             placeholder="City, Country"
             onChange={setData}
+            value={personalDetailsData.address}
           />
         </li>
       </ul>
@@ -474,12 +491,14 @@ function FormContent({
   deleteExperienceForm,
   toggleEducationVisibility,
   toggleExperienceVisibility,
+  personalDetailsData,
   setPersonalDetailsData
 }) {
 
   return (
     <div className="form-content">
       <PersonalDetails 
+        personalDetailsData={personalDetailsData}
         setPersonalDetailsData={setPersonalDetailsData}
       />
       <EducationDetails
@@ -561,11 +580,16 @@ function FormContainer({
   activeFontColor,
   setActiveFontColor,
   setActiveLayoutButton,
+  personalDetailsData,
   setPersonalDetailsData
 }) {
   return (
     <div className="form-container">
-      <TopButtons />
+      <TopButtons 
+        setPersonalDetailsData={setPersonalDetailsData}
+        setSavedEducation={setSavedEducation}
+        setSavedExperience={setSavedExperience}
+      />
       {activeButton === 'content' ? (
         <FormContent
           expandedSection={expandedSection}
@@ -602,6 +626,7 @@ function FormContainer({
           deleteExperienceForm={deleteExperienceForm}
           toggleEducationVisibility={toggleEducationVisibility}
           toggleExperienceVisibility={toggleExperienceVisibility}
+          personalDetailsData={personalDetailsData}
           setPersonalDetailsData={setPersonalDetailsData}
         />
       ) : (

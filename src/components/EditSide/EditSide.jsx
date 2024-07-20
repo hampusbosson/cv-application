@@ -17,14 +17,15 @@ function EditSide({
   savedExperience,
   setSavedEducation,
   setSavedExperience,
+  personalDetailsData,
   setPersonalDetailsData,
   educationInfoVisible,
   setEducationInfoVisible,
   experienceInfoVisible,
   setExperienceInfoVisible
 }) {
-  const [activeButton, setActiveButton] = useState("content");
 
+  const [activeButton, setActiveButton] = useState("content");
   const [expandedSection, setExpandedSection] = useState(null);
   const [EducationForm, setEducationForm] = useState(null);
   const [ExperienceForm, setExperienceForm] = useState(null);
@@ -199,6 +200,7 @@ function EditSide({
         activeFontColor={activeFontColor}
         setActiveFontColor={setActiveFontColor}
         setActiveLayoutButton={setActiveLayoutButton}
+        personalDetailsData={personalDetailsData}
         setPersonalDetailsData={setPersonalDetailsData}
       />
     </div>
