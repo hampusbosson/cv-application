@@ -15,7 +15,12 @@ function TopButtons() {
   );
 }
 
-function PersonalDetails() {
+function PersonalDetails({ setPersonalDetailsData }) {
+  function setData(e) {
+    const {name, value} = e.target;
+    setPersonalDetailsData((prevState) => ({...prevState, [name]: value}))
+  }
+
   return (
     <section className="personal-details-container">
       <h1>Personal Details</h1>
@@ -25,8 +30,10 @@ function PersonalDetails() {
           <input
             type="text"
             id="full-name"
+            name="fullName"
             className="input-element"
             placeholder="First and last name"
+            onChange={setData}
           />
         </li>
         <li className="details-element">
@@ -34,8 +41,10 @@ function PersonalDetails() {
           <input
             type="email"
             id="email"
+            name="email"
             className="input-element"
             placeholder="Enter email"
+            onChange={setData}
           />
         </li>
         <li className="details-element">
@@ -43,17 +52,21 @@ function PersonalDetails() {
           <input
             type="tel"
             id="phone-number"
+            name="phone"
             className="input-element"
             placeholder="Enter phone number"
+            onChange={setData}
           />
         </li>
         <li className="details-element">
           <label htmlFor="adress">Address</label>
           <input
             type="text"
-            id="adress"
+            id="address"
+            name="address"
             className="input-element"
             placeholder="City, Country"
+            onChange={setData}
           />
         </li>
       </ul>
@@ -460,12 +473,15 @@ function FormContent({
   deleteEducationForm,
   deleteExperienceForm,
   toggleEducationVisibility,
-  toggleExperienceVisibility
+  toggleExperienceVisibility,
+  setPersonalDetailsData
 }) {
 
   return (
     <div className="form-content">
-      <PersonalDetails />
+      <PersonalDetails 
+        setPersonalDetailsData={setPersonalDetailsData}
+      />
       <EducationDetails
         isExpanded={expandedSection === "education"}
         onToggle={() => handleToggle("education")}
@@ -544,7 +560,8 @@ function FormContainer({
   setActiveFontButton,
   activeFontColor,
   setActiveFontColor,
-  setActiveLayoutButton
+  setActiveLayoutButton,
+  setPersonalDetailsData
 }) {
   return (
     <div className="form-container">
@@ -585,6 +602,7 @@ function FormContainer({
           deleteExperienceForm={deleteExperienceForm}
           toggleEducationVisibility={toggleEducationVisibility}
           toggleExperienceVisibility={toggleExperienceVisibility}
+          setPersonalDetailsData={setPersonalDetailsData}
         />
       ) : (
         <CustomizePage 
