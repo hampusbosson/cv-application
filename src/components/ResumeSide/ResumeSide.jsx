@@ -59,9 +59,11 @@ function Education({ activeFontColor, educationFormData, savedEducation, isVisib
     backgroundColor: isDark ? "rgba(14, 55, 78, 0.07)" : "black",
   };
 
+  const anyVisible = isVisible.some(visible => visible);
+
   return (
     <div className="experience-container">
-      {(savedEducation.length > 0 || isFormActive) && (
+      {(savedEducation.length > 0 && anyVisible) && (
         <h2 className="resume-experience-header" style={styles}>
           Education
         </h2>
@@ -96,9 +98,11 @@ function Experience({ activeFontColor, experienceFormData, savedExperience, isVi
     backgroundColor: isDark ? "rgba(14, 55, 78, 0.07)" : "black",
   };
 
+  const anyVisible = isVisible.some(visible => visible);
+
   return (
     <div className="experience-container">
-      {(savedExperience.length > 0 || isFormActive) && (
+      {(savedExperience.length > 0 && anyVisible) && (
         <h2 className="resume-experience-header" style={styles}>
           Experience
         </h2>
