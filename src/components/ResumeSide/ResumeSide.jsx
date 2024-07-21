@@ -34,7 +34,7 @@ function Header({
       </div>
       <div className={`header-info ${activeLayoutButton}`}>
         <div className="mail-info">
-          {personalDetailsData.email ? icons.enevelope(iconColor) :  null}
+          {personalDetailsData.email ? icons.enevelope(iconColor) : null}
           <p>{personalDetailsData.email}</p>
         </div>
         <div className="phone-info">
@@ -50,7 +50,14 @@ function Header({
   );
 }
 
-function Education({ activeFontColor, educationFormData, savedEducation, isVisible, isFormActive, editingEducationIndex }) {
+function Education({
+  activeFontColor,
+  educationFormData,
+  savedEducation,
+  isVisible,
+  isFormActive,
+  editingEducationIndex,
+}) {
   // Determine if the color is dark or light
   const isDark = getLuminance(activeFontColor) < 120; // Threshold can be adjusted
 
@@ -59,28 +66,49 @@ function Education({ activeFontColor, educationFormData, savedEducation, isVisib
     backgroundColor: isDark ? "rgba(14, 55, 78, 0.07)" : "black",
   };
 
-  const anyVisible = isVisible.some(visible => visible);
+  const anyVisible = isVisible.some((visible) => visible);
 
   return (
     <div className="experience-container">
-      {(savedEducation.length > 0 && anyVisible) && (
+      {savedEducation.length > 0 && anyVisible && (
         <h2 className="resume-experience-header" style={styles}>
           Education
         </h2>
       )}
       <ul className="experience-list-resume">
         {savedEducation.map((entry, index) => (
-          <li key={index} className="experience-entry"  style={isVisible[index] ? {} : { display: 'none' }} >
+          <li
+            key={index}
+            className="experience-entry"
+            style={isVisible[index] ? {} : { display: "none" }}
+          >
             <div className="date-location-box">
               <p className="date">
-                {isFormActive && editingEducationIndex === index ? educationFormData.startDate : entry.startDate} -
-                {isFormActive && editingEducationIndex === index ? educationFormData.endDate : entry.endDate}
+                {isFormActive && editingEducationIndex === index
+                  ? educationFormData.startDate
+                  : entry.startDate}{" "}
+                -{" "}
+                {isFormActive && editingEducationIndex === index
+                  ? educationFormData.endDate
+                  : entry.endDate}
               </p>
-              <p className="loc">{isFormActive && editingEducationIndex === index ? educationFormData.school : entry.school}</p>
+              <p className="loc">
+                {isFormActive && editingEducationIndex === index
+                  ? educationFormData.school
+                  : entry.school}
+              </p>
             </div>
             <div className="company-position-description-box">
-              <p className="company">{isFormActive && editingEducationIndex === index ? educationFormData.degree : entry.degree}</p>
-              <p className="position">{isFormActive && editingEducationIndex === index ? educationFormData.location : entry.location}</p>
+              <p className="company">
+                {isFormActive && editingEducationIndex === index
+                  ? educationFormData.degree
+                  : entry.degree}
+              </p>
+              <p className="position">
+                {isFormActive && editingEducationIndex === index
+                  ? educationFormData.location
+                  : entry.location}
+              </p>
             </div>
           </li>
         ))}
@@ -89,7 +117,14 @@ function Education({ activeFontColor, educationFormData, savedEducation, isVisib
   );
 }
 
-function Experience({ activeFontColor, experienceFormData, savedExperience, isVisible, isFormActive, editingExperienceIndex }) {
+function Experience({
+  activeFontColor,
+  experienceFormData,
+  savedExperience,
+  isVisible,
+  isFormActive,
+  editingExperienceIndex,
+}) {
   // Determine if the color is dark or light
   const isDark = getLuminance(activeFontColor) < 120; // Threshold can be adjusted
 
@@ -98,29 +133,54 @@ function Experience({ activeFontColor, experienceFormData, savedExperience, isVi
     backgroundColor: isDark ? "rgba(14, 55, 78, 0.07)" : "black",
   };
 
-  const anyVisible = isVisible.some(visible => visible);
+  const anyVisible = isVisible.some((visible) => visible);
 
   return (
     <div className="experience-container">
-      {(savedExperience.length > 0 && anyVisible) && (
+      {savedExperience.length > 0 && anyVisible && (
         <h2 className="resume-experience-header" style={styles}>
           Experience
         </h2>
       )}
       <ul className="experience-list-resume">
         {savedExperience.map((entry, index) => (
-          <li key={index} className="experience-entry"  style={isVisible[index] ? {} : { display: 'none' }} >
+          <li
+            key={index}
+            className="experience-entry"
+            style={isVisible[index] ? {} : { display: "none" }}
+          >
             <div className="date-location-box">
               <p className="date">
-                {isFormActive && editingExperienceIndex === index ? experienceFormData.startDate : entry.startDate} -
-                {isFormActive && editingExperienceIndex === index ? experienceFormData.endDate : entry.endDate}
+                {isFormActive && editingExperienceIndex === index
+                  ? experienceFormData.startDate
+                  : entry.startDate}{" "}
+                -{" "}
+                {isFormActive && editingExperienceIndex === index
+                  ? experienceFormData.endDate
+                  : entry.endDate}
               </p>
-              <p className="loc">{isFormActive && editingExperienceIndex === index ? experienceFormData.location : entry.location}</p>
+              <p className="loc">
+                {isFormActive && editingExperienceIndex === index
+                  ? experienceFormData.location
+                  : entry.location}
+              </p>
             </div>
             <div className="company-position-description-box">
-              <p className="company">{isFormActive && editingExperienceIndex === index ? experienceFormData.company : entry.company}</p>
-              <p className="position">{isFormActive && editingExperienceIndex === index ? experienceFormData.position : entry.position}</p>
-              <p className="position-description">{isFormActive && editingExperienceIndex === index ? experienceFormData.description : entry.description}</p>
+              <p className="company">
+                {isFormActive && editingExperienceIndex === index
+                  ? experienceFormData.company
+                  : entry.company}
+              </p>
+              <p className="position">
+                {isFormActive && editingExperienceIndex === index
+                  ? experienceFormData.position
+                  : entry.position}
+              </p>
+              <p className="position-description">
+                {isFormActive && editingExperienceIndex === index
+                  ? experienceFormData.description
+                  : entry.description}
+              </p>
             </div>
           </li>
         ))}
@@ -145,7 +205,6 @@ function ResumeSide({
   editingEducationIndex,
   editingExperienceIndex,
 }) {
-
   const styles = {
     fontFamily: activeFontButton,
   };

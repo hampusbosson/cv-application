@@ -30,9 +30,8 @@ function EditSide({
   educationForm,
   setEducationForm,
   experienceForm,
-  setExperienceForm
+  setExperienceForm,
 }) {
-
   const [activeButton, setActiveButton] = useState("content");
   const [expandedSection, setExpandedSection] = useState(null);
 

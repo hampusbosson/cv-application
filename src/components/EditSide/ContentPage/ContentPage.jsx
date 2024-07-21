@@ -3,14 +3,19 @@ import icons from "../../../assets/icons/Icons";
 import CustomizePage from "../CustomizePage/CustomizePage";
 import exampleData from "../../../assets/data/exampleData";
 
-function TopButtons({ setPersonalDetailsData, setSavedEducation, setSavedExperience, setEducationInfoVisible, setExperienceInfoVisible }) {
-
+function TopButtons({
+  setPersonalDetailsData,
+  setSavedEducation,
+  setSavedExperience,
+  setEducationInfoVisible,
+  setExperienceInfoVisible,
+}) {
   function clearResume() {
     setPersonalDetailsData({
       fullName: "",
       email: "",
       phone: "",
-      address: ""
+      address: "",
     });
 
     setSavedEducation([]);
@@ -19,11 +24,11 @@ function TopButtons({ setPersonalDetailsData, setSavedEducation, setSavedExperie
 
   function loadExample() {
     setPersonalDetailsData(exampleData.personalDetails);
-    
+
     // Set education data and visibility
     setSavedEducation([exampleData.education]);
     setEducationInfoVisible([true]); // Make the loaded education entry visible
-    
+
     // Set experience data and visibility
     setSavedExperience(exampleData.experience);
     setExperienceInfoVisible(exampleData.experience.map(() => true)); // Make all loaded experience entries visible
@@ -36,15 +41,17 @@ function TopButtons({ setPersonalDetailsData, setSavedEducation, setSavedExperie
         Clear Resume
       </button>
 
-      <button id="example-btn" onClick={loadExample}>Load Example</button>
+      <button id="example-btn" onClick={loadExample}>
+        Load Example
+      </button>
     </div>
   );
 }
 
 function PersonalDetails({ personalDetailsData, setPersonalDetailsData }) {
   function setData(e) {
-    const {name, value} = e.target;
-    setPersonalDetailsData((prevState) => ({...prevState, [name]: value}))
+    const { name, value } = e.target;
+    setPersonalDetailsData((prevState) => ({ ...prevState, [name]: value }));
   }
 
   return (
@@ -118,7 +125,7 @@ function EducationDetails({
   editEntry,
   editingIndex,
   toggleVisible,
-  isVisible
+  isVisible,
 }) {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -126,7 +133,7 @@ function EducationDetails({
   };
 
   const handleSave = () => {
-    const companyName = document.getElementById('school-name').value;
+    const companyName = document.getElementById("school-name").value;
     saveForm(companyName);
   };
 
@@ -168,13 +175,13 @@ function EducationDetails({
                 >
                   {entry.school}
                   <button
-                    className='visible-btn'
+                    className="visible-btn"
                     onClick={(e) => {
                       e.stopPropagation();
-                      toggleVisible(index)
+                      toggleVisible(index);
                     }}
                   >
-                    {isVisible[index] ? icons.eye : icons.eyeSlashed }
+                    {isVisible[index] ? icons.eye : icons.eyeSlashed}
                   </button>
                 </button>
               ))}
@@ -297,16 +304,15 @@ function ExperienceDetails({
   editEntry,
   editingIndex,
   toggleVisible,
-  isVisible
+  isVisible,
 }) {
-  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
   const handleSave = () => {
-    const companyName = document.getElementById('company-name').value;
+    const companyName = document.getElementById("company-name").value;
     saveForm(companyName);
   };
 
@@ -351,10 +357,10 @@ function ExperienceDetails({
                     className="visible-btn"
                     onClick={(e) => {
                       e.stopPropagation();
-                      toggleVisible(index)
+                      toggleVisible(index);
                     }}
                   >
-                    {isVisible[index] ? icons.eye : icons.eyeSlashed }
+                    {isVisible[index] ? icons.eye : icons.eyeSlashed}
                   </button>
                 </button>
               ))}
@@ -503,12 +509,10 @@ function FormContent({
   toggleExperienceVisibility,
   personalDetailsData,
   setPersonalDetailsData,
-  
 }) {
-
   return (
     <div className="form-content">
-      <PersonalDetails 
+      <PersonalDetails
         personalDetailsData={personalDetailsData}
         setPersonalDetailsData={setPersonalDetailsData}
       />
@@ -588,14 +592,14 @@ function FormContainer({
 }) {
   return (
     <div className="form-container">
-      <TopButtons 
+      <TopButtons
         setPersonalDetailsData={setPersonalDetailsData}
         setSavedEducation={setSavedEducation}
         setSavedExperience={setSavedExperience}
         setEducationInfoVisible={setEducationInfoVisible}
         setExperienceInfoVisible={setExperienceInfoVisible}
       />
-      {activeButton === 'content' ? (
+      {activeButton === "content" ? (
         <FormContent
           expandedSection={expandedSection}
           educationForm={educationForm}
@@ -625,7 +629,7 @@ function FormContainer({
           setPersonalDetailsData={setPersonalDetailsData}
         />
       ) : (
-        <CustomizePage 
+        <CustomizePage
           activeFontButton={activeFontButton}
           setActiveFontButton={setActiveFontButton}
           activeFontColor={activeFontColor}
