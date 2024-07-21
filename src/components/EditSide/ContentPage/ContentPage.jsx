@@ -112,7 +112,6 @@ function EducationDetails({
   deleteForm,
   closeForm,
   saveForm,
-  formSaved,
   formData,
   setFormData,
   savedEntries,
@@ -292,7 +291,6 @@ function ExperienceDetails({
   deleteForm,
   closeForm,
   saveForm,
-  formSaved,
   formData,
   setFormData,
   savedEntries,
@@ -489,8 +487,6 @@ function FormContent({
   savedExperience,
   editingEducationIndex,
   editingExperienceIndex,
-  educationFormSaved,
-  experienceFormSaved,
   educationInfoVisible,
   experienceInfoVisible,
   handleToggle,
@@ -522,7 +518,6 @@ function FormContent({
         deleteForm={deleteEducationForm}
         closeForm={() => closeEducationForm()}
         saveForm={saveEducationForm}
-        formSaved={educationFormSaved}
         formData={educationFormData}
         setFormData={setEducationFormData}
         savedEntries={savedEducation}
@@ -539,7 +534,6 @@ function FormContent({
         deleteForm={deleteExperienceForm}
         closeForm={() => closeExperienceForm()}
         saveForm={saveExperienceForm}
-        formSaved={experienceFormSaved}
         formData={experienceFormData}
         setFormData={setExperienceFormData}
         savedEntries={savedExperience}
@@ -566,13 +560,7 @@ function FormContainer({
   savedExperience,
   setSavedExperience,
   editingEducationIndex,
-  setEditingEducationIndex,
   editingExperienceIndex,
-  setEditingExperienceIndex,
-  educationFormSaved,
-  setEducationFormSaved,
-  experienceFormSaved,
-  setExperienceFormSaved,
   educationInfoVisible,
   setEducationInfoVisible,
   experienceInfoVisible,
@@ -615,21 +603,11 @@ function FormContainer({
           experienceFormData={experienceFormData}
           setExperienceFormData={setExperienceFormData}
           savedEducation={savedEducation}
-          setSavedEducation={setSavedEducation}
           savedExperience={savedExperience}
-          setSavedExperience={setSavedExperience}
           editingEducationIndex={editingEducationIndex}
-          setEditingEducationIndex={setEditingEducationIndex}
           editingExperienceIndex={editingExperienceIndex}
-          setEditingExperienceIndex={setEditingExperienceIndex}
-          educationFormSaved={educationFormSaved}
-          setEducationFormSaved={setEducationFormSaved}
-          experienceFormSaved={experienceFormSaved}
-          setExperienceFormSaved={setExperienceFormSaved}
           educationInfoVisible={educationInfoVisible}
-          setEducationInfoVisible={setEducationInfoVisible}
           experienceInfoVisible={experienceInfoVisible}
-          setExperienceInfoVisible={setExperienceInfoVisible}
           handleToggle={handleToggle}
           showEducationForm={showEducationForm}
           showExperienceForm={showExperienceForm}

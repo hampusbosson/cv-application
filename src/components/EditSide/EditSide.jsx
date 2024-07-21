@@ -31,8 +31,6 @@ function EditSide({
   const [ExperienceForm, setExperienceForm] = useState(null);
   const [editingEducationIndex, setEditingEducationIndex] = useState(null);
   const [editingExperienceIndex, setEditingExperienceIndex] = useState(null);
-  const [educationFormSaved, setEducationFormSaved] = useState(null);
-  const [experienceFormSaved, setExperienceFormSaved] = useState(null);
 
 
   function handleToggle(section) {
@@ -111,7 +109,6 @@ function EditSide({
       updatedEductaion[editingEducationIndex] = educationFormData;
       setSavedEducation(updatedEductaion);
     }
-    setEducationFormSaved(true);
     closeEducationForm();
   }
 
@@ -128,7 +125,6 @@ function EditSide({
       updatedExperience[editingExperienceIndex] = experienceFormData;
       setSavedExperience(updatedExperience);
     }
-    setExperienceFormSaved(true);
     closeExperienceForm();
   }
 
@@ -173,13 +169,7 @@ function EditSide({
         savedExperience={savedExperience}
         setSavedExperience={setSavedExperience}
         editingEducationIndex={editingEducationIndex}
-        setEditingEducationIndex={setEditingEducationIndex}
         editingExperienceIndex={editingExperienceIndex}
-        setEditingExperienceIndex={setEditingExperienceIndex}
-        educationFormSaved={educationFormSaved}
-        setEducationFormSaved={setEducationFormSaved}
-        experienceFormSaved={experienceFormSaved}
-        setExperienceFormSaved={setExperienceFormSaved}
         educationInfoVisible={educationInfoVisible}
         setEducationInfoVisible={setEducationInfoVisible}
         experienceInfoVisible={experienceInfoVisible}
