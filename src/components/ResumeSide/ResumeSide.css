@@ -1,5 +1,5 @@
 .resume-side {
-    flex: 1 1 780px; /* flex-grow: 1, flex-shrink: 1, flex-basis: 780px */
+    flex: 1 1 780px; 
     background-color: white;
     min-width: 0; /* Prevent overflow */
     max-width: 780px;
@@ -10,24 +10,23 @@
 
 .resume-side.left {
   display: grid;
-  grid-template-columns: 1fr 1.3fr; /* Two equal columns */
-  grid-template-rows: 1fr; /* One row */
+  grid-template-columns: 1fr 1.3fr; 
+  grid-template-rows: 1fr; 
   grid-template-areas: 
-    "header content"; /* Place content first, then header */
+    "header content"; 
 }
 
 .resume-side.right {
   display: grid;
-  grid-template-columns: 1.3fr 1fr; /* Two equal columns */
-  grid-template-rows: 1fr; /* One row */
+  grid-template-columns: 1.3fr 1fr;
+  grid-template-rows: 1fr; 
   grid-template-areas: 
-    "content header"; /* Place content first, then header */
+    "content header"; 
 }
 
 .resume-side.right .resume-content {
   grid-area: content;
 }
-
 
 @media (max-width: 1100px) {
   .resume-side {
@@ -182,6 +181,7 @@
 
 .date-location-box {
   min-width: 8.5rem;
+  max-width: 8rem;
 }
 
 

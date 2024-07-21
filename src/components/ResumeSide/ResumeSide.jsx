@@ -50,7 +50,7 @@ function Header({
   );
 }
 
-function Education({ activeFontColor, savedEducation, isVisible }) {
+function Education({ activeFontColor, educationFormData, savedEducation, isVisible, isFormActive, editingEducationIndex }) {
   // Determine if the color is dark or light
   const isDark = getLuminance(activeFontColor) < 120; // Threshold can be adjusted
 
@@ -60,24 +60,25 @@ function Education({ activeFontColor, savedEducation, isVisible }) {
   };
 
   return (
-    <div className="education-container">
-      {savedEducation.length > 0 && (
-        <h2 className="resume-education-header" style={styles}>
+    <div className="experience-container">
+      {(savedEducation.length > 0 || isFormActive) && (
+        <h2 className="resume-experience-header" style={styles}>
           Education
         </h2>
       )}
-      <ul className="education-list-resume">
+      <ul className="experience-list-resume">
         {savedEducation.map((entry, index) => (
-          <li key={index} className="education-entry" style={isVisible[index] ? {} : { display: 'none' }}>
+          <li key={index} className="experience-entry"  style={isVisible[index] ? {} : { display: 'none' }} >
             <div className="date-location-box">
               <p className="date">
-                {entry.startDate} - {entry.endDate}
+                {isFormActive && editingEducationIndex === index ? educationFormData.startDate : entry.startDate} -
+                {isFormActive && editingEducationIndex === index ? educationFormData.endDate : entry.endDate}
               </p>
-              <p className="loc">{entry.location}</p>
+              <p className="loc">{isFormActive && editingEducationIndex === index ? educationFormData.school : entry.school}</p>
             </div>
-            <div className="school-degree-box">
-              <p className="school">{entry.school}</p>
-              <p className="degree">{entry.degree}</p>
+            <div className="company-position-description-box">
+              <p className="company">{isFormActive && editingEducationIndex === index ? educationFormData.degree : entry.degree}</p>
+              <p className="position">{isFormActive && editingEducationIndex === index ? educationFormData.location : entry.location}</p>
             </div>
           </li>
         ))}
@@ -133,9 +134,12 @@ function ResumeSide({
   personalDetailsData,
   educationInfoVisible,
   experienceInfoVisible,
+  educationFormData,
   experienceFormData,
+  educationForm,
   experienceForm,
-  editingExperienceIndex
+  editingEducationIndex,
+  editingExperienceIndex,
 }) {
 
   const styles = {
@@ -153,8 +157,11 @@ function ResumeSide({
       <div className="resume-content">
         <Education
           activeFontColor={activeFontColor}
+          educationFormData={educationFormData}
           savedEducation={savedEducation}
           isVisible={educationInfoVisible}
+          isFormActive={educationForm}
+          editingEducationIndex={editingEducationIndex}
         />
         <Experience
           activeFontColor={activeFontColor}
