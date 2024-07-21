@@ -299,6 +299,7 @@ function ExperienceDetails({
   toggleVisible,
   isVisible
 }) {
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
@@ -477,8 +478,8 @@ function ExperienceDetails({
 
 function FormContent({
   expandedSection,
-  EducationForm,
-  ExperienceForm,
+  educationForm,
+  experienceForm,
   educationFormData,
   setEducationFormData,
   experienceFormData,
@@ -501,7 +502,8 @@ function FormContent({
   toggleEducationVisibility,
   toggleExperienceVisibility,
   personalDetailsData,
-  setPersonalDetailsData
+  setPersonalDetailsData,
+  
 }) {
 
   return (
@@ -513,7 +515,7 @@ function FormContent({
       <EducationDetails
         isExpanded={expandedSection === "education"}
         onToggle={() => handleToggle("education")}
-        isFormActive={EducationForm}
+        isFormActive={educationForm}
         showForm={() => showEducationForm()}
         deleteForm={deleteEducationForm}
         closeForm={() => closeEducationForm()}
@@ -529,7 +531,7 @@ function FormContent({
       <ExperienceDetails
         isExpanded={expandedSection === "experience"}
         onToggle={() => handleToggle("experience")}
-        isFormActive={ExperienceForm}
+        isFormActive={experienceForm}
         showForm={() => showExperienceForm()}
         deleteForm={deleteExperienceForm}
         closeForm={() => closeExperienceForm()}
@@ -549,8 +551,8 @@ function FormContent({
 function FormContainer({
   activeButton,
   expandedSection,
-  EducationForm,
-  ExperienceForm,
+  educationForm,
+  experienceForm,
   educationFormData,
   setEducationFormData,
   experienceFormData,
@@ -582,7 +584,7 @@ function FormContainer({
   setActiveFontColor,
   setActiveLayoutButton,
   personalDetailsData,
-  setPersonalDetailsData
+  setPersonalDetailsData,
 }) {
   return (
     <div className="form-container">
@@ -596,8 +598,8 @@ function FormContainer({
       {activeButton === 'content' ? (
         <FormContent
           expandedSection={expandedSection}
-          EducationForm={EducationForm}
-          ExperienceForm={ExperienceForm}
+          educationForm={educationForm}
+          experienceForm={experienceForm}
           educationFormData={educationFormData}
           setEducationFormData={setEducationFormData}
           experienceFormData={experienceFormData}

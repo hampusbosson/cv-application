@@ -22,16 +22,19 @@ function EditSide({
   educationInfoVisible,
   setEducationInfoVisible,
   experienceInfoVisible,
-  setExperienceInfoVisible
+  setExperienceInfoVisible,
+  editingExperienceIndex,
+  editingEducationIndex,
+  setEditingEducationIndex,
+  setEditingExperienceIndex,
+  educationForm,
+  setEducationForm,
+  experienceForm,
+  setExperienceForm
 }) {
 
   const [activeButton, setActiveButton] = useState("content");
   const [expandedSection, setExpandedSection] = useState(null);
-  const [EducationForm, setEducationForm] = useState(null);
-  const [ExperienceForm, setExperienceForm] = useState(null);
-  const [editingEducationIndex, setEditingEducationIndex] = useState(null);
-  const [editingExperienceIndex, setEditingExperienceIndex] = useState(null);
-
 
   function handleToggle(section) {
     setExpandedSection((prevSection) =>
@@ -158,8 +161,8 @@ function EditSide({
       <FormContainer
         activeButton={activeButton}
         expandedSection={expandedSection}
-        EducationForm={EducationForm}
-        ExperienceForm={ExperienceForm}
+        educationForm={educationForm}
+        experienceForm={experienceForm}
         educationFormData={educationFormData}
         setEducationFormData={setEducationFormData}
         experienceFormData={experienceFormData}
