@@ -9,7 +9,11 @@
 }
 
 .resume-side.left {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr; /* Two equal columns */
+  grid-template-rows: 1fr; /* One row */
+  grid-template-areas: 
+    "header content"; /* Place content first, then header */
 }
 
 .resume-side.right {
@@ -51,8 +55,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 40rem;
-  min-width: 17rem;
 }
 
 .resume-header.right {
