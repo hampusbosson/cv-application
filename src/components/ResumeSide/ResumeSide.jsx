@@ -99,7 +99,7 @@ function Experience({ activeFontColor, savedExperience, isVisible }) {
     <div className="experience-container">
       {savedExperience.length > 0 && (
         <h2 className="resume-education-header" style={styles}>
-          Education
+          Experience
         </h2>
       )}
       <ul className="experience-list-resume">

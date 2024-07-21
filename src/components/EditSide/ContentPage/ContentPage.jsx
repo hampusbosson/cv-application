@@ -1,8 +1,9 @@
 import "./ContentPage.css";
 import icons from "../../../assets/icons/Icons";
 import CustomizePage from "../CustomizePage/CustomizePage";
+import exampleData from "../../../assets/data/exampleData";
 
-function TopButtons({ setPersonalDetailsData, setSavedEducation, setSavedExperience }) {
+function TopButtons({ setPersonalDetailsData, setSavedEducation, setSavedExperience, setEducationInfoVisible, setExperienceInfoVisible }) {
 
   function clearResume() {
     setPersonalDetailsData({
@@ -16,6 +17,18 @@ function TopButtons({ setPersonalDetailsData, setSavedEducation, setSavedExperie
     setSavedExperience([]);
   }
 
+  function loadExample() {
+    setPersonalDetailsData(exampleData.personalDetails);
+    
+    // Set education data and visibility
+    setSavedEducation([exampleData.education]);
+    setEducationInfoVisible([true]); // Make the loaded education entry visible
+    
+    // Set experience data and visibility
+    setSavedExperience(exampleData.experience);
+    setExperienceInfoVisible(exampleData.experience.map(() => true)); // Make all loaded experience entries visible
+  }
+
   return (
     <div className="form-top-buttons">
       <button id="clear-btn" onClick={clearResume}>
@@ -23,7 +36,7 @@ function TopButtons({ setPersonalDetailsData, setSavedEducation, setSavedExperie
         Clear Resume
       </button>
 
-      <button id="example-btn">Load Example</button>
+      <button id="example-btn" onClick={loadExample}>Load Example</button>
     </div>
   );
 }
@@ -145,7 +158,7 @@ function EducationDetails({
       {isExpanded && (
         <div className="education-data">
           <div className="education-list">
-            {formSaved &&
+            {savedEntries.length > 0 &&
               !isFormActive &&
               savedEntries.map((entry, index) => (
                 <button
@@ -325,7 +338,7 @@ function ExperienceDetails({
       {isExpanded && (
         <div className="experience-data">
           <div className="experience-list">
-            {formSaved &&
+            {savedEntries.length > 0 &&
               !isFormActive &&
               savedEntries.map((entry, index) => (
                 <button
@@ -589,6 +602,8 @@ function FormContainer({
         setPersonalDetailsData={setPersonalDetailsData}
         setSavedEducation={setSavedEducation}
         setSavedExperience={setSavedExperience}
+        setEducationInfoVisible={setEducationInfoVisible}
+        setExperienceInfoVisible={setExperienceInfoVisible}
       />
       {activeButton === 'content' ? (
         <FormContent
