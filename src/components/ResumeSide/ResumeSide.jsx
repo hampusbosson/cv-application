@@ -69,9 +69,9 @@ function Education({
   const anyVisible = isVisible.some((visible) => visible);
 
   return (
-    <div className="experience-container">
+    <div className="education-container">
       {savedEducation.length > 0 && anyVisible && (
-        <h2 className="resume-experience-header" style={styles}>
+        <h2 className="resume-education-header" style={styles}>
           Education
         </h2>
       )}
@@ -79,7 +79,7 @@ function Education({
         {savedEducation.map((entry, index) => (
           <li
             key={index}
-            className="experience-entry"
+            className="education-entry"
             style={isVisible[index] ? {} : { display: "none" }}
           >
             <div className="date-location-box">
