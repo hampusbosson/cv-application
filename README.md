@@ -1,8 +1,14 @@
-# React + Vite
+# CV Builder
+This app features a two-section interface designed to streamline resume creation and customization.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description 
+The first section allows users to input their personal details and add entries for education and work experience. Additionally, users can fully customize their resume by changing the font, color, and layout to suit their preferences.
 
-Currently, two official plugins are available:
+The second section displays the actual CV/resume, reflecting the content and customizations made in the first section. This dynamic preview ensures users can see their changes in real-time, creating a seamless and user-friendly experience for crafting a professional resume.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Links
+- [Live App](https://dulcet-stardust-3b93c0.netlify.app/)
+![alt text](image-1.png)
+
+
+
